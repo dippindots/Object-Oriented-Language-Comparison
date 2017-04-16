@@ -4,7 +4,7 @@
 #### Team members:
 * Gaofei Zhao(dippindots)
 * Xiang Li(leexgh)
-* 先到先得
+* Jiahui Song(Keevey)
 * 先到先得
 
 #### Languages we want to make comparison:
