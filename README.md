@@ -5,6 +5,8 @@
 * Gaofei Zhao(dippindots)
 * Xiang Li(leexgh)
 * Jiahui Song(Keevey)
-* Congyu Guo()
+* Congyu Guo(gcycaas)
 
 #### Languages we want to make comparison:
+* Java
+* Python
