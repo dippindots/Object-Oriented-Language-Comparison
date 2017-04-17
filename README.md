@@ -5,6 +5,6 @@
 * Gaofei Zhao(dippindots)
 * Xiang Li(leexgh)
 * Jiahui Song(Keevey)
-* 先到先得
+* Congyu Guo()
 
 #### Languages we want to make comparison:
