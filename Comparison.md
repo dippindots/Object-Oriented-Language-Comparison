@@ -81,18 +81,56 @@
   #### Catching Exceptions
   A method catches an exception using a combination of the **try** and **catch** keywords. A try/catch block is placed around the code that might generate an exception. 
   
-  * **Single catching blocks**
-  Code within one try/catch block is referred to as protected code, as following:
-  ```Java
-  try {
-   // Protected code
-  }catch(ExceptionName e1) {
-   // Catch block
-  }
-  ```
-  A catch block must be associated with a try block. The corresponding catch block executes if an exception of a particular type occurs within the try block. Every try block should be immediately followed either by a catch block or finally block.
+  * **Single catch blocks**
+    Code within one try/catch block is referred to as protected code, as following:
+    ```Java
+    try {
+      // Protected code
+    }catch(ExceptionName e1) {
+      // Catch block
+    }
+    ```
+    A catch block must be associated with a try block. The corresponding catch block executes if an exception of a particular type occurs within the try block. Every try block should be immediately followed either by a catch block or finally block.
   
-  If an exception occurs in protected code, the catch block (or blocks) that follows the try is checked. If the type of exception that occurred is listed in a catch block, the exception is passed to the catch block much as an argument is passed into a method parameter.
+    If an exception occurs in protected code, the catch block (or blocks) that follows the try is checked. If the type of exception that occurred is listed in a catch block, the exception is passed to the catch block much as an argument is passed into a method parameter.
+    
+    For example, the following is an array declared with 2 elements. Then the code tries to access the 3rd element of the array which throws an exception:
+    ```Java
+    import java.io.*;
+    public class ExcepTest {
+
+       public static void main(String args[]) {
+          try {
+             int a[] = new int[2];
+             System.out.println("Access element three :" + a[3]);
+          }catch(ArrayIndexOutOfBoundsException e) {
+             System.out.println("Exception thrown  :" + e);
+          }
+          System.out.println("Out of the block");
+       }
+    }
+    ```
+    and the output is as following:
+    ```Java
+    Exception thrown  :java.lang.ArrayIndexOutOfBoundsException: 3
+    Out of the block
+    ```
+    
+  * **Multiple catch blocks**
+    A try block can be followed by multiple catch blocks, as following:
+    ```Java
+    try {
+      // Protected code
+    }catch(ExceptionType1 e1) {
+      // Catch block
+    }catch(ExceptionType2 e2) {
+      // Catch block
+    }catch(ExceptionType3 e3) {
+      // Catch block
+    }
+    ```
+    If an exception occurs in the protected code, the exception is thrown to the first catch block in the list. If the data type of the exception thrown matches ExceptionType1, it gets caught there. If not, the exception passes down to the second catch statement. This continues until the exception either is caught or falls through all catches, in which case the current method stops execution and the exception is thrown down to the previous method on the call stack.
+    The order of those 
 
 
 
