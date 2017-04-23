@@ -64,8 +64,8 @@
    
   * **Errors**
   
-  When an exception occurs the JVM will create an exception object. These objects all derive from the _Throwable_ class. The _Throwable_ class has two main subclasses -- _Error_ and _Exception_. The _Error_ class denotes an exception that an application is not likely to be able to deal with. 
-  Errors are typically ignored in your code because you can rarely do anything about an error. For example, if a stack overflow occurs, an error will arise. It's possible for the application to catch the error to notify the user but typically the application is going to have to close until the underlying problem is dealt with.
+    When an exception occurs the JVM will create an exception object. These objects all derive from the _Throwable_ class. The _Throwable_ class has two main subclasses -- _Error_ and _Exception_. The _Error_ class denotes an exception that an application is not likely to be able to deal with. 
+    Errors are typically ignored in your code because you can rarely do anything about an error. For example, if a stack overflow occurs, an error will arise. It's possible for the application to catch the error to notify the user but typically the application is going to have to close until the underlying problem is dealt with.
   
   #### Exception Definition
 
