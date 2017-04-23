@@ -14,7 +14,7 @@
     
     A checked exception is an exception that occurs at the compile time, these are also called as compile time exceptions. These exceptions cannot simply be ignored at the time of compilation, the programmer should take care of (handle) these exceptions.
     For example, if we would like to use the _FileReader_ class to read a character file. The _FileReader_ constructor definition in the Java api is as following:
-    ```
+    ```Java
     public FileReader(String fileName)
       throws FileNotFoundException
     ```
