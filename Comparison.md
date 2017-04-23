@@ -18,6 +18,35 @@
     public FileReader(String fileName)
       throws FileNotFoundException
     ```
+    So we would write following code to read the file
+    ```Java
+        public static void main(String[] args){
+        FileReader fileInput = null;
+        fileInput = new FileReader("test.txt");
+    }
+    ```
+    Syntactically the statements are correct but this code will never compile. The compiler knows the _FileReader_ constructor can throw a _FileNotFoundException_ and it's up to the calling code to handle this exception. There are two ways to handle this exception. First of all, we could use the same _throws_ clause:
+    ```Java
+     public static void main(String[] args) throws FileNotFoundException{
+        FileReader fileInput = null;
+        fileInput = new FileReader("test.txt");
+    }
+    ```
+    Or we could handle with the exception:
+    ```Java
+        public static void main(String[] args){
+        FileReader fileInput = null;
+        try
+        {
+           fileInput = new FileReader("Untitled.txt");
+        }
+        catch(FileNotFoundException ex)
+        {
+            //tell the user to go and find the file
+        }
+    }
+    ```
+    
     
 
 
