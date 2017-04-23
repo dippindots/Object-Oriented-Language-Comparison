@@ -78,8 +78,21 @@
     
     Error defines problems that are not expected to be caught under normal circumstances by our program, such as memory error, hardware error, JVM error etc.
   
-  #### Exception Definition
+  #### Catching Exceptions
+  A method catches an exception using a combination of the **try** and **catch** keywords. A try/catch block is placed around the code that might generate an exception. 
   
+  * **Single catching blocks**
+  Code within one try/catch block is referred to as protected code, as following:
+  ```Java
+  try {
+   // Protected code
+  }catch(ExceptionName e1) {
+   // Catch block
+  }
+  ```
+  A catch block must be associated with a try block. The corresponding catch block executes if an exception of a particular type occurs within the try block. Every try block should be immediately followed either by a catch block or finally block.
+  
+  If an exception occurs in protected code, the catch block (or blocks) that follows the try is checked. If the type of exception that occurred is listed in a catch block, the exception is passed to the catch block much as an argument is passed into a method parameter.
 
 
 
