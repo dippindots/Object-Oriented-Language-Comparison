@@ -8,11 +8,12 @@
    An Exception can be anything which interrupts program processing. When an exception occurs, the normal flow of the program gets terminated and doesn’t continue any further. In such cases we will get a system generated error message. Fortunately, most of time, exceptions can be handled.
    
 * ### Java
-
+  
+  #### Exception Definition
   There are three categories of Exceptions in Java. 
   * **Checked exceptions**
     
-    A checked exception is an exception that occurs at the compile time, these are also called as compile time exceptions. These exceptions cannot simply be ignored at the time of compilation, the programmer should take care of (handle) these exceptions.
+    A checked exception is an exception that occurs at the compile time, these are also called as **compile time exceptions**. These exceptions cannot simply be ignored at the time of compilation, the programmer should take care of (handle) these exceptions.
     For example, if we would like to use the _FileReader_ class to read a character file. The _FileReader_ constructor definition in the Java api is as following:
     ```Java
     public FileReader(String fileName)
@@ -47,6 +48,19 @@
     }
     ```
     
+  * **Unchecked exceptions**
+    
+    An unchecked exception is an exception that occurs at the time of execution. These are also called as **Runtime Exceptions**. These include programming bugs, such as logic errors or improper use of an API. Runtime exceptions are ignored at the time of compilation.
+    You've written the code, it all looks good to the compiler and when you go to run the code it falls over because it tried to access an element of an array that does not exist or a logic error caused a method to be called with a null value. For example, if you have declared an array of size 5 in your program, and trying to call the 6th element of the array then an _ArrayIndexOutOfBoundsExceptionexception_ occurs.
+    ```Java
+    public class Unchecked_Demo {
+   
+       public static void main(String args[]) {
+         int num[] = {1, 2, 3, 4};
+         System.out.println(num[5]);
+       }
+    }
+```
     
 
 
