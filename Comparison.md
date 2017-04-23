@@ -90,9 +90,11 @@
       // Catch block
     }
     ```
+    If an exception occurs in protected code then the control of execution is passed to the catch block from try block. The exception is caught up by the corresponding catch block. A single try block can have multiple catch statements associated with it, but each catch block can be defined for only one exception class. The program can also contain nested try-catch-finally blocks.
+    
+    After the execution of all the try blocks, the code inside the finally block executes. It is not mandatory to include a finally block at all, but if you do, it will run regardless of whether an exception was thrown and handled by the try and catch blocks.
+    
     A catch block must be associated with a try block. The corresponding catch block executes if an exception of a particular type occurs within the try block. Every try block should be immediately followed either by a catch block or finally block.
-  
-    If an exception occurs in protected code, the catch block (or blocks) that follows the try is checked. If the type of exception that occurred is listed in a catch block, the exception is passed to the catch block much as an argument is passed into a method parameter.
     
     For example, the following is an array declared with 2 elements. Then the code tries to access the 3rd element of the array which throws an exception:
     ```Java
@@ -130,7 +132,36 @@
     }
     ```
     If an exception occurs in the protected code, the exception is thrown to the first catch block in the list. If the data type of the exception thrown matches ExceptionType1, it gets caught there. If not, the exception passes down to the second catch statement. This continues until the exception either is caught or falls through all catches, in which case the current method stops execution and the exception is thrown down to the previous method on the call stack.
-    The order of those 
+    
+    The order of those multiple exception blocks should be from specific to generic.
+    ```Java
+    class Example2{
+       public static void main(String args[]){
+         try{
+            int a[]=new int[7];
+            a[4]=30/0;
+            System.out.println("First print statement in try block");
+         }
+         catch(ArithmeticException e){
+           System.out.println("Warning: ArithmeticException");
+         }
+         catch(ArrayIndexOutOfBoundsException e){
+           System.out.println("Warning: ArrayIndexOutOfBoundsException");
+         }
+         catch(Exception e){
+           System.out.println("Warning: Some Other exception");
+         }
+       System.out.println("Out of try-catch block...");
+       }
+   }
+   ```
+ 
+  * **The final block**
+    The finally block follows a try block or a catch block. A finally block of code always executes, irrespective of occurrence of an Exception. Using a finally block allows you to run any cleanup-type statements that you want to execute, no matter what happens in the protected code. A finally block appears at the end of the catch blocks, as following:
+    
+
+  #### The Throws/Throw Keywords
+  If a method does not handle a checked exception, the method must declare it using the _throws_ keyword. The _throws_ keyword appears at the end of a method's signature. You can throw an exception, either a newly instantiated one or an exception that you just caught, by using the _throw_ keyword. The _throws_ keyword is used to postpone the handling of a checked exception and the _throw_ keyword is used to invoke an exception explicitly.
 
 
 
