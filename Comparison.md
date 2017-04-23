@@ -158,6 +158,7 @@
    
    
   * **The final block**
+  
     The finally block follows a try block or a catch block. A Using a finally block allows you to run any cleanup-type statements that you want to execute, no matter what happens in the protected code. A finally block appears at the end of the catch blocks, as following:
     ```Java
     try {
