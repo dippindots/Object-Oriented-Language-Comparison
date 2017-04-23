@@ -82,6 +82,7 @@
   A method catches an exception using a combination of the **try** and **catch** keywords. A try/catch block is placed around the code that might generate an exception. 
   
   * **Single catch blocks**
+  
     Code within one try/catch block is referred to as protected code, as following:
     ```Java
     try {
@@ -119,6 +120,7 @@
     ```
     
   * **Multiple catch blocks**
+  
     A try block can be followed by multiple catch blocks, as following:
     ```Java
     try {
@@ -193,9 +195,28 @@
   #### User-defined Exceptions
   * **Create your own exceptions**
   
+    We need to extend the predefined Exception class to create our own Exception. These are considered to be checked exceptions. We can define our own Exception class as below:
+    ```Java
+    class MyException extends Exception {
+    }
+    ```
+    For example:
+    ```Java
+    class MyException extends Exception{
+       String str1;
+       MyException(String str2) {
+          str1=str2;
+       }
+       public String toString(){ 
+          return ("Output String = "+str1) ;
+       }
+     }
+     ```
+     In order to throw user defined exceptions, throw keyword is being used. In this tutorial, we will see how to create a new exception and throw it in a program using throw keyword.
+    
   * **The Throws/Throw Keywords**
   
-  If a method does not handle a checked exception, the method must declare it using the _throws_ keyword. The _throws_ keyword appears at the end of a method's signature. You can throw an exception, either a newly instantiated one or an exception that you just caught, by using the _throw_ keyword. The _throws_ keyword is used to postpone the handling of a checked exception and the _throw_ keyword is used to invoke an exception explicitly.
+    If a method does not handle a checked exception, the method must declare it using the _throws_ keyword. The _throws_ keyword appears at the end of a method's signature. You can throw an exception, either a newly instantiated one or an exception that you just caught, by using the _throw_ keyword. The _throws_ keyword is used to postpone the handling of a checked exception and the _throw_ keyword is used to invoke an exception explicitly.
   
 
   
