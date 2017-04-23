@@ -6,9 +6,9 @@
 5. **Errors and exception handling: How are errors and/or exceptions handled/structured/implemented?**
 
    An Exception can be anything which interrupts program processing. When an exception occurs, the normal flow of the program gets terminated and doesn’t continue any further. In such cases we will get a system generated error message. Fortunately, most of time, exceptions can be handled.
-   * Java
-     There are three categories of Exceptions in Java. 
-     * **Checked exceptions**: A checked exception is an exception that occurs at the compile time, these are also called as compile time exceptions. These exceptions cannot simply be ignored at the time of compilation, the programmer should take care of (handle) these exceptions.
+* Java
+   There are three categories of Exceptions in Java. 
+   * **Checked exceptions**: A checked exception is an exception that occurs at the compile time, these are also called as compile time exceptions. These exceptions cannot simply be ignored at the time of compilation, the programmer should take care of (handle) these exceptions.
 
 
 
