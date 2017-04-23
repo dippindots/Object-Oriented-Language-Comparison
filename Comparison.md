@@ -53,15 +53,15 @@
     An unchecked exception is an exception that occurs at the time of execution. These are also called as **Runtime Exceptions**. These include programming bugs, such as logic errors or improper use of an API. Runtime exceptions are ignored at the time of compilation.
     You've written the code, it all looks good to the compiler and when you go to run the code it falls over because it tried to access an element of an array that does not exist or a logic error caused a method to be called with a null value. For example, if you have declared an array of size 5 in your program, and trying to call the 6th element of the array then an _ArrayIndexOutOfBoundsExceptionexception_ occurs.
     ```Java
-    public class Unchecked_Demo {
-   
+    public class Unchecked_Exceptions {
+    
        public static void main(String args[]) {
          int num[] = {1, 2, 3, 4};
          System.out.println(num[5]);
        }
     }
-   ```
-   
+    ```
+
   * **Errors**
   
     When an exception occurs the JVM will create an exception object. These objects all derive from the _Throwable_ class. The _Throwable_ class has two main subclasses -- _Error_ and _Exception_. The _Error_ class denotes an exception that an application is not likely to be able to deal with. 
