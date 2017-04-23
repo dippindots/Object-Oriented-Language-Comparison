@@ -20,6 +20,7 @@
     public FileReader(String fileName)
       throws FileNotFoundException
     ```
+    
     So we would write following code to read the file
     ```Java
         public static void main(String[] args){
@@ -27,6 +28,7 @@
         fileInput = new FileReader("test.txt");
     }
     ```
+    
     Syntactically the statements are correct but this code will never compile. The compiler knows the _FileReader_ constructor can throw a _FileNotFoundException_ and it's up to the calling code to handle this exception. There are two ways to handle this exception. First of all, we could use the same _throws_ clause:
     ```Java
      public static void main(String[] args) throws FileNotFoundException{
@@ -34,6 +36,7 @@
         fileInput = new FileReader("test.txt");
     }
     ```
+    
     Or we could handle with the exception:
     ```Java
         public static void main(String[] args){
@@ -48,6 +51,7 @@
         }
     }
     ```
+    In conclusion, all exceptions that the compiler checks them during compilation to see whether the programmer has handled them or not. If these exceptions are not handled/declared in the program, it will give compilation error, such as _ClassNotFoundException_, _IllegalAccessException_, _NoSuchFieldException_, _EOFException_ etc.
     
   * **Unchecked exceptions**
     
@@ -63,14 +67,19 @@
        }
     }
     ```
+    In conclusion, These exceptions need not be included in any method’s throws list because compiler does not check to see if a method handles or throws these exceptions, but it’s the duty of the programmer to handle these exceptions and provide a safe exit, such as _ArithmeticException_, _ArrayIndexOutOfBoundsException_, _NullPointerException_, _NegativeArraySizeException_ etc.
+
 
   * **Errors**
   
-    When an exception occurs the JVM will create an exception object. These objects all derive from the _Throwable_ class. The _Throwable_ class has two main subclasses -- _Error_ and _Exception_. The _Error_ class denotes an exception that an application is not likely to be able to deal with.   
+    When an exception occurs the JVM will create an exception object. These objects all derive from the _Throwable_ class. The _Throwable_ class has two main subclasses -- _Error_ and _Exception_. The _Error_ class denotes an exception that an application is not likely to be able to deal with. 
+    
     Errors are typically ignored in your code because you can rarely do anything about an error. For example, if a stack overflow occurs, an error will arise. It's possible for the application to catch the error to notify the user but typically the application is going to have to close until the underlying problem is dealt with.
+    
+    Error defines problems that are not expected to be caught under normal circumstances by our program, such as memory error, hardware error, JVM error etc.
   
   #### Exception Definition
-
+  
 
 
 
