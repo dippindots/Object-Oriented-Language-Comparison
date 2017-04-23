@@ -5,8 +5,8 @@
 4. Name spaces: How are name spaces implemented and used?
 5. **Errors and exception handling: How are errors and/or exceptions handled/structured/implemented?**
 
-⋅⋅⋅An Exception can be anything which interrupts program processing. When an exception occurs, the normal flow of the program gets terminated and doesn’t continue any further. In such cases we will get a system generated error message. Fortunately, most of time, exceptions can be handled.⋅⋅
-⋅⋅⋅There are three categories of Exceptions.⋅⋅
+An Exception can be anything which interrupts program processing. When an exception occurs, the normal flow of the program gets terminated and doesn’t continue any further. In such cases we will get a system generated error message. Fortunately, most of time, exceptions can be handled.
+There are three categories of Exceptions.
 
 
 * Java
