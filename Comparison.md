@@ -155,9 +155,39 @@
        }
    }
    ```
- 
+   
+   
   * **The final block**
-    The finally block follows a try block or a catch block. A finally block of code always executes, irrespective of occurrence of an Exception. Using a finally block allows you to run any cleanup-type statements that you want to execute, no matter what happens in the protected code. A finally block appears at the end of the catch blocks, as following:
+    The finally block follows a try block or a catch block. A Using a finally block allows you to run any cleanup-type statements that you want to execute, no matter what happens in the protected code. A finally block appears at the end of the catch blocks, as following:
+    ```Java
+    try {
+      // Protected code
+    }catch(ExceptionType1 e1) {
+      // Catch block
+    }finally {
+      // The finally block always executes.
+    }
+    ```
+    The finally block of code always executes, irrespective of occurrence of an Exception.
+    ```Java
+    class JavaFinally
+    {
+       public static void main(String args[])
+       {
+         System.out.println(JavaFinally.myMethod());  
+       }
+       public static int myMethod()
+       {
+         try {
+           return 112;
+         }
+         finally {
+           System.out.println("This is Finally block");
+           System.out.println("Finally block ran even after return statement");
+         }
+       }
+     }
+     ```
     
 
   #### The Throws/Throw Keywords
