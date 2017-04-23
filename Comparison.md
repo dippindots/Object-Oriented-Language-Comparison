@@ -217,9 +217,31 @@
   * **The Throws/Throw Keywords**
   
     If a method does not handle a checked exception, the method must declare it using the _throws_ keyword. The _throws_ keyword appears at the end of a method's signature. You can throw an exception, either a newly instantiated one or an exception that you just caught, by using the _throw_ keyword. The _throws_ keyword is used to postpone the handling of a checked exception and the _throw_ keyword is used to invoke an exception explicitly.
-  
+    If we would like to use the exception we defines above, we could use the _throw_ keywork as below:
+    ```Java
+    class CustomException{
+       public static void main(String args[]){
+          try{
+             throw new MyException("Custom");
+             // I'm throwing user defined custom exception above
+          }
+          catch(MyException exp){
+             System.out.println("Hi this is my catch block") ;
+             System.out.println(exp) ;
+          }
+       }
+    }
+    ```
+    And the output is as below:
+    ```Java
+    Hi this is my catch block
+    Output String = Custom
+    ```
+    
 
+* ### Python
   
+  #### Exception Definition  
 
 
 6. **Memory management and garbage collection: How is memory management and garbage collection handled?**
