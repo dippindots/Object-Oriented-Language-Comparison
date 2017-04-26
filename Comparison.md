@@ -241,7 +241,9 @@
 
 * ### Python
   
-  #### Exception Definition  
+  #### Exception handling
+  Here is a list of standard exception in Python:
+  
 
 
 6. **Memory management and garbage collection: How is memory management and garbage collection handled?**
