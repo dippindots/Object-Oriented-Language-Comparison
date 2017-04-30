@@ -550,9 +550,11 @@
   Non-reachable objects become garbage.
   
   * **The Mark and Sweep Model**
-    Live objects are tracked and everything else designated garbage. 
+  
+    Live objects are tracked and everything else designated garbage. A mark and sweep garbage collection consists of two phases, the mark phase and the sweep phase.
     
-    A mark and sweep garbage collection consists of two phases, the mark phase and the sweep phase.
+    * It traverses all object references, starting with the GC roots, and marks every object found as alive.
+    * All of the heap memory that is not occupied by marked objects is reclaimed. It is simply marked as free, essentially swept free of unused objects.
     
     During the mark phase all objects that are reachable from Java threads, native handles and other root sources are marked as alive, as well as the objects that are reachable from these objects and so forth. This process identifies and marks all objects that are still used, and the rest can be considered garbage.
     
