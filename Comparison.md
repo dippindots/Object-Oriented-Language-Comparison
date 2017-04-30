@@ -10,7 +10,39 @@
     * By = = operator
     * By compareTo() method
 
-    
+  #### 1) String compare by equals() method
+  The String equals() method compares the original content of the string. It compares values of string for equality. String class provides two methods:
+  * public boolean equals(Object another) compares this string to the specified object.
+  * public boolean equalsIgnoreCase(String another) compares this String to another string, ignoring case.
+
+  ```Java
+    class Stringequals
+    {  
+      public static void main(String args[])
+      {  
+       String s1="Hello";  
+       String s2="Hello";  
+       String s3=new String("Hello");  
+       String s4="Hella";  
+       System.out.println(s1.equals(s2));//true  
+       System.out.println(s1.equals(s3));//true  
+       System.out.println(s1.equals(s4));//false  
+     }  
+    }  
+  ```
+
+  ```Java
+    class StringequalsIgnorecase
+    {  
+      public static void main(String args[])
+      {  
+       String s1="Hello";  
+       String s2="hello";  
+       System.out.println(s1.equals(s2));//false  
+       System.out.println(s1.equalsIgnoreCase(s2));//true
+     }  
+    }  
+  ```  
 2. Null object references: What is the keyword for a null/nil/etc object reference?
 3. Name of instance reference in instance method: What is the keyword for referring to an object instance in an instance method? (this/self/?)
 4. Name spaces: How are name spaces implemented and used?
