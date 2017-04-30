@@ -378,8 +378,10 @@
      pass
   ```
 
+
   #### Raising Exception
-  The raise statement allows the programmer to force a specified exception to occur. The sole argument to raise indicates the exception to be raised. This must be either an exception instance or an exception class (a class that derives from Exception). If an exception class is passed, it will be implicitly instantiated by calling its constructor with no arguments. The general syntax for the raise statement is as follows.
+  
+  The raise statement allows the programmer to force a specified exception to occur. The sole argument to raise indicates the exception to be raised. This must be either an exception instance or an exception class (a class that derives from Exception). If an exception class is passed, it will be implicitly instantiated by calling its constructor with no arguments. The general syntax for the raise statement is as follows.
   
   ```Python
     raise [Exception [, args [, traceback]]]
@@ -387,6 +389,7 @@
   
   Exception is the type of exception (for example, NameError) and argument is a value for the exception argument. The argument is optional; if not supplied, the exception argument is None.The final argument, traceback, is also optional (and rarely used in practice), and if present, is the traceback object used for the exception.
   If you need to determine whether an exception was raised but don’t intend to handle it, a simpler form of the raise statement allows you to re-raise the exception.For example, an exception can be a string, a class or an object. Most of the exceptions that the Python core raises are classes, with an argument that is an instance of the class. Defining new exceptions is quite easy and can be done as follows: 
+  
   ```Python
     def functionName( level ):
        if level < 1:
@@ -394,10 +397,13 @@
           # The code below to this would not be executed
           # if we raise the exception
   ``` 
-  ** This _raise_ phrase realizes similar functionalities with the _throw/throws_ phrase in Java.
+  
+  ** This _raise_ phrase realizes similar functionalities with the _throw/throws_ phrase in Java. **
   
   Python also allows you to create your own exceptions by deriving classes from the standard built-in exceptions, which is similar to Java -- Writing your own exceptions and then throwing the exceptions.
+  
   This is an example related to RuntimeError. One class is created that is subclassed from RuntimeError. This is useful when you need to display more specific information when an exception is caught.
+  
   In the try block, the user-defined exception is raised and caught in the except block. The variable e is used to create an instance of the class Networkerror.
 
   ```Python
