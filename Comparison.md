@@ -521,8 +521,46 @@
   #### The Heap and the Nursery
   
   Java objects reside in an area called the _heap_. The _heap_ is created when the JVM starts up and may increase or decrease in size while the application runs. When the _heap_ becomes full, _garbage_ is collected. During the _garbage collection_ objects that are no longer used are cleared, thus making space for new objects.
-  The _heap_ is sometimes divided into two areas (or generations) called the _nursery_ (or young space) and the old space. The _nursery_ is a part of the _heap_ reserved for allocation of new objects. When the _nursery_ becomes full, garbage is collected by running a special young collection, where all objects that have lived long enough in the nursery are promoted (moved) to the old space, thus freeing up the nursery for more object allocation. When the old space becomes full garbage is collected there, a process called an old collection.
-  The reasoning behind a nursery is that most objects are temporary and short lived. A young collection is designed to be swift at finding newly allocated objects that are still alive and moving them away from the nursery. Typically, a young collection frees a given amount of memory much faster than an old collection or a garbage collection of a single-generational heap (a heap without a nursery).
+  
+  Object creation is faster because global synchronization with the operating system is not needed for every single object. An allocation simply claims some portion of a memory array and moves the offset pointer forward. The next allocation starts at this offset and claims the next portion of the array.
+  
+  When an object is no longer used, the garbage collector reclaims the underlying memory and reuses it for future object allocation. This means there is no explicit deletion and no memory is given back to the operating system.
+
+  The _heap_ is sometimes divided into two areas (or generations) called the _nursery_ (or young space) and the _old space_. The _nursery_ is a part of the _heap_ reserved for allocation of new objects. When the _nursery_ becomes full, _garbage_ is collected by running a special young collection, where all objects that have lived long enough in the _nursery_ are promoted (moved) to the _old space_, thus freeing up the _nursery_ for more object allocation. When the _old space_ becomes full garbage is collected there, a process called an _old collection_.
+  
+  The reasoning behind a _nursery_ is that most objects are temporary and short lived. A _young collection_ is designed to be swift at finding newly allocated objects that are still alive and moving them away from the nursery. Typically, a _young collection_ frees a given amount of memory much faster than an _old collection_ or a _garbage collection_ of a single-generational _heap_ (a heap without a nursery).
+  
+  #### Garbage Collection
+  
+  Garbage collection is the process of freeing space in the heap or the nursery for allocation of new objects.
+  
+  Every object tree must have one or more root objects. As long as the application can reach those roots, the whole tree is reachable. Special objects called garbage-collection roots are always reachable and so is any object that has a garbage-collection root at its own root.
+  
+  There are four kinds of GC roots in Java:
+  * Local variables are kept alive by the stack of a thread. This is not a real object virtual reference and thus is not visible. For all intents and purposes, local variables are GC roots.
+  * Active Java threads are always considered live objects and are therefore GC roots. This is especially important for thread local variables.
+  * Static variables are referenced by their classes. This fact makes them de facto GC roots. Classes themselves can be garbage-collected, which would remove all referenced static variables. This is of special importance when we use application servers, OSGi containers or class loaders in general. We will discuss the related problems in the Problem Patterns section.
+  *JNI References are Java objects that the native code has created as part of a JNI call. Objects thus created are treated specially because the JVM does not know if it is being referenced by the native code or not. Such objects represent a very special form of GC root, which we will examine in more detail in the Problem Patterns section below.
+  
+  Therefore, a simple Java application has the following GC roots:
+  * Local variables in the main method
+  * The main thread
+  * Static variables of the main class
+  
+  Non-reachable objects become garbage.
+  
+  * **The Mark and Sweep Model**
+    Live objects are tracked and everything else designated garbage. 
+    
+    A mark and sweep garbage collection consists of two phases, the mark phase and the sweep phase.
+    
+    During the mark phase all objects that are reachable from Java threads, native handles and other root sources are marked as alive, as well as the objects that are reachable from these objects and so forth. This process identifies and marks all objects that are still used, and the rest can be considered garbage.
+    
+    During the sweep phase the heap is traversed to find the gaps between the live objects. These gaps are recorded in a free list and are made available for new object allocation.
+    
+    
+
+
 
 7. Interfaces/protocols/?: How do interfaces/protocols/etc work?
 8. Functional features: What functional features are supported and how do they work? (lambdas, closures, etc)
