@@ -380,9 +380,42 @@
 
   #### Assertions
   An assertion is a sanity-check that you can turn on or turn off when you are done with your testing of the program.
-  **Here is a big difference between Java and Python since there is no assertion in Java. If you would like to realize an assertion, you have to use a throw-if statement (or to be more accurate, a throw-if-not statement). An expression is tested, and if the result comes up false, an exception is threw.**
+  
+  **Here is a big difference between Java and Python since there is no _assertion_ in Java. If you would like to realize an _assertion_, you have to use a _throw-if_ statement (or to be more accurate, a _throw-if-not_ statement). An expression is tested, and if the result comes up false, an exception is threw.**
+  
+  The syntax for assert is:
+  
+  ```Python
+  assert Expression[, Arguments]
+  ```
+  
+  If the assertion fails, Python uses ArgumentExpression as the argument for the AssertionError. AssertionError exceptions can be caught and handled like any other exception using the try-except statement, but if not handled, they will terminate the program and produce a traceback.
+  This is a function that converts a temperature from degrees Kelvin to degrees Fahrenheit. Since zero degrees Kelvin is as cold as it gets, the function bails out if it sees a negative temperature:
+  
+  ```Python
+  #!/usr/bin/python
 
+    def KelvinToFahrenheit(Temperature):
+       assert (Temperature >= 0),"Colder than absolute zero!"
+       return ((Temperature-273)*1.8)+32
 
+    print KelvinToFahrenheit(273)
+    print int(KelvinToFahrenheit(505.78))
+    print KelvinToFahrenheit(-5)
+  ```
+  
+  When the above code is executed, it produces the following result:
+  
+  ```Python
+    32.0
+    451
+    Traceback (most recent call last):
+      File "test.py", line 9, in <module>
+        print KelvinToFahrenheit(-5)
+      File "test.py", line 4, in KelvinToFahrenheit
+        assert (Temperature >= 0),"Colder than absolute zero!"
+    AssertionError: Colder than absolute zero!
+  ```
   
   
 
