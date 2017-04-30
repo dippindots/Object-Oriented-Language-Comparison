@@ -378,6 +378,13 @@
      pass
   ```
 
+  #### Assertions
+  An assertion is a sanity-check that you can turn on or turn off when you are done with your testing of the program.
+  **Here is a big difference between Java and Python since there is no assertion in Java. If you would like to realize an assertion, you have to use a throw-if statement (or to be more accurate, a throw-if-not statement). An expression is tested, and if the result comes up false, an exception is threw.**
+
+
+  
+  
 
   #### Raising Exception
   
@@ -398,7 +405,7 @@
           # if we raise the exception
   ``` 
   
-  ** This _raise_ phrase realizes similar functionalities with the _throw/throws_ phrase in Java. **
+  **This _raise_ phrase realizes similar functionalities with the _throw/throws_ phrase in Java.**
   
   Python also allows you to create your own exceptions by deriving classes from the standard built-in exceptions, which is similar to Java -- Writing your own exceptions and then throwing the exceptions.
   
