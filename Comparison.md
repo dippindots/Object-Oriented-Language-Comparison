@@ -355,7 +355,8 @@
 
 
   This part is similar to the exception handling in Java, as following:
-  ```Java
+  
+  ```Python
   while True:
      try:
          x = int(input("Please enter a number: "))
@@ -363,6 +364,7 @@
      except ValueError:
          print("Oops!  That was no valid number.  Try again...")
   ```
+  
   The try statement works as follows.
   * First, the try clause (the statement(s) between the try and except keywords) is executed.
   * If no exception occurs, the except clause is skipped and execution of the try statement is finished.
@@ -370,9 +372,44 @@
   * If an exception occurs which does not match the exception named in the except clause, it is passed on to outer try statements; if no handler is found, it is an unhandled exception and execution stops with a message as shown above.
   
   A try statement may have more than one except clause, to specify handlers for different exceptions. At most one handler will be executed. Handlers only handle exceptions that occur in the corresponding try clause, not in other handlers of the same try statement. An except clause may name multiple exceptions as a parenthesized tuple, for example:
-  ```Java
+  
+  ```Python
   except (RuntimeError, TypeError, NameError):
      pass
+  ```
+
+  #### Raising Exception
+  The raise statement allows the programmer to force a specified exception to occur. The sole argument to raise indicates the exception to be raised. This must be either an exception instance or an exception class (a class that derives from Exception). If an exception class is passed, it will be implicitly instantiated by calling its constructor with no arguments. The general syntax for the raise statement is as follows.
+  
+  ```Python
+    raise [Exception [, args [, traceback]]]
+  ```
+  
+  Exception is the type of exception (for example, NameError) and argument is a value for the exception argument. The argument is optional; if not supplied, the exception argument is None.The final argument, traceback, is also optional (and rarely used in practice), and if present, is the traceback object used for the exception.
+  If you need to determine whether an exception was raised but don’t intend to handle it, a simpler form of the raise statement allows you to re-raise the exception.For example, an exception can be a string, a class or an object. Most of the exceptions that the Python core raises are classes, with an argument that is an instance of the class. Defining new exceptions is quite easy and can be done as follows: 
+  ```Python
+    def functionName( level ):
+       if level < 1:
+          raise "Invalid level!", level
+          # The code below to this would not be executed
+          # if we raise the exception
+  ``` 
+  ** This _raise_ phrase realizes similar functionalities with the _throw/throws_ phrase in Java.
+  
+  Python also allows you to create your own exceptions by deriving classes from the standard built-in exceptions, which is similar to Java -- Writing your own exceptions and then throwing the exceptions.
+  This is an example related to RuntimeError. One class is created that is subclassed from RuntimeError. This is useful when you need to display more specific information when an exception is caught.
+  In the try block, the user-defined exception is raised and caught in the except block. The variable e is used to create an instance of the class Networkerror.
+
+  ```Python
+    class Networkerror(RuntimeError):
+       def __init__(self, arg):
+          self.args = arg
+    So once you defined above class, you can raise the exception as follows −
+
+    try:
+       raise Networkerror("Bad hostname")
+    except Networkerror,e:
+       print e.args
   ```
   
   
