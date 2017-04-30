@@ -458,6 +458,9 @@
        print e.args
   ```
   
+  #### Finally blocks
+  
+  **Similarly, Python also has _finally_ clause like _final_ blocks in Java.** A _finally_ clause is always executed before leaving the _try_ statement, whether an exception has occurred or not. When an exception has occurred in the _try_ clause and has not been handled by an except clause (or it has occurred in an except or else clause), it is re-raised after the _finally_ clause has been executed. The _finally_ clause is also executed “on the way out” when any other clause of the _try_ statement is left via a _break_, _continue_ or _return_ statement.
   
   
 
