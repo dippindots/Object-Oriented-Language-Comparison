@@ -462,6 +462,49 @@
   
   **Similarly, Python also has _finally_ clause like _final_ blocks in Java.** A _finally_ clause is always executed before leaving the _try_ statement, whether an exception has occurred or not. When an exception has occurred in the _try_ clause and has not been handled by an except clause (or it has occurred in an except or else clause), it is re-raised after the _finally_ clause has been executed. The _finally_ clause is also executed “on the way out” when any other clause of the _try_ statement is left via a _break_, _continue_ or _return_ statement.
   
+  ```Python
+  def divide(x, y):
+     try:
+         result = x / y
+     except ZeroDivisionError:
+         print("division by zero!")
+     else:
+         print("result is", result)
+     finally:
+         print("executing finally clause")
+
+>>> divide(2, 1)
+    result is 2.0
+    executing finally clause
+>>> divide(2, 0)
+    division by zero!
+    executing finally clause
+>>> divide("2", "1")
+    executing finally clause
+  ```
+  
+  The TypeError raised by dividing two strings is not handled by the except clause and therefore re-raised after the finally clause has been executed.
+  
+  #### Predefined Clean-up Actions
+  
+  **There is another big difference between Java and Python, which is the fact that Java doesn't have _with_ statment but Python does.**
+  When we are trying to open a file and print its contents to the screen by using the following code.
+
+  ```Python
+  for line in open("myfile.txt"):
+    print(line, end="")
+  ```
+  
+  The problem with this code is that it leaves the file open for an indeterminate amount of time after this part of the code has finished executing. This is not an issue in simple scripts, but can be a problem for larger applications. The with statement allows objects like files to be used in a way that ensures they are always cleaned up promptly and correctly.
+
+  ```Python
+  with open("myfile.txt") as f:
+    for line in f:
+        print(line, end="")
+  ```
+  
+  It is much convenient to use the _with_ statement when opening a file, however, in Java, you still need to use _try-catch_ statement to catch the exceptions could happened during opening files.
+
   
 
 6. **Memory management and garbage collection: How is memory management and garbage collection handled?**
