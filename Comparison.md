@@ -346,7 +346,6 @@
   LookupError	 | Base class for all lookup errors. 
   IndexError   |  Raised when an index is not found in a sequence. 
   IOError    | Raised when an input/ output operation fails, such as the print statement or the open() function when trying to open a file that does not exist. 
-
   SystemError	  | Raised when the interpreter finds an internal problem, but when this error is encountered the Python interpreter does not exit.
   SystemExit	  | Raised when Python interpreter is quit by using the sys.exit() function. If not handled in the code, causes the interpreter to exit.
   TypeError	  | Raised when an operation or function is attempted that is invalid for the specified data type.
