@@ -514,6 +514,16 @@
   
 
 6. **Memory management and garbage collection: How is memory management and garbage collection handled?**
+
+   Memory management is the process of allocating new objects and removing unused objects to make space for those new object allocations.
+
+* ### Java
+  #### The Heap and the Nursery
+  
+  Java objects reside in an area called the _heap_. The _heap_ is created when the JVM starts up and may increase or decrease in size while the application runs. When the _heap_ becomes full, _garbage_ is collected. During the _garbage collection_ objects that are no longer used are cleared, thus making space for new objects.
+  The _heap_ is sometimes divided into two areas (or generations) called the _nursery_ (or young space) and the old space. The _nursery_ is a part of the _heap_ reserved for allocation of new objects. When the _nursery_ becomes full, garbage is collected by running a special young collection, where all objects that have lived long enough in the nursery are promoted (moved) to the old space, thus freeing up the nursery for more object allocation. When the old space becomes full garbage is collected there, a process called an old collection.
+  The reasoning behind a nursery is that most objects are temporary and short lived. A young collection is designed to be swift at finding newly allocated objects that are still alive and moving them away from the nursery. Typically, a young collection frees a given amount of memory much faster than an old collection or a garbage collection of a single-generational heap (a heap without a nursery).
+
 7. Interfaces/protocols/?: How do interfaces/protocols/etc work?
 8. Functional features: What functional features are supported and how do they work? (lambdas, closures, etc)
 9. Reflection: What reflection abilities are supported?
