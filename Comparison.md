@@ -612,18 +612,46 @@
     
     * By nulling the reference
     
-    
+    ```Java 
+    Employee e=new Employee();  
+    e=null;  
+    ```
     
     * By assigning a reference to another
     
-    
+    ```Java 
+    Employee e1=new Employee();  
+    Employee e2=new Employee();  
+    e1=e2;//now the first object referred by e1 is available for garbage collection  
+    ```
     
     * By annonymous object etc.
     
+    ```Java 
+    new Employee();
+    ```
     
+    * By isolating a Reference
     
+    ```Java 
+    Referen r2 = new Referen ();
+    Referen r3= new Referen ();
+    Referen r4= new Referen ();
+    r2.r = r3;
+    r3.r = r4;
+    r4.r = r2;
+    r2 = null;
+    r3 = null;
+    r4 = null;
+    ```
     
-There is no manual way of doing garbage collection in Java.
+* ### Python
+
+  **The big difference of memory management between Python and Java is that there is no manual way of doing garbage collection in Java, however, you can create an object and the Python Virtual Machine handles the memory needed and where it shall be placed in the memory layout in Python.**
+  
+  Memory management in Python involves a private heap containing all Python objects and data structures. The management of this private heap is ensured internally by the Python memory manager. The Python memory manager has different components which deal with various dynamic storage management aspects, like sharing, segmentation, preallocation or caching.
+  
+  The algorithm used for garbage collecting is called Reference counting. That is the Python VM keeps an internal journal of how many references refer to an object, and automatically garbage collects it when there are no more references refering to it.
 
 7. Interfaces/protocols/?: How do interfaces/protocols/etc work?
 8. Functional features: What functional features are supported and how do they work? (lambdas, closures, etc)
