@@ -355,6 +355,7 @@
 
 
 
+
 6. **Memory management and garbage collection: How is memory management and garbage collection handled?**
 7. Interfaces/protocols/?: How do interfaces/protocols/etc work?
 8. Functional features: What functional features are supported and how do they work? (lambdas, closures, etc)
