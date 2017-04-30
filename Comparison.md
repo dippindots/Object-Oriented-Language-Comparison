@@ -44,9 +44,9 @@
     }  
   ```  
 
-    #### 2) String compare by == operator
-    The = = operator compares references not values.
-    ```Java
+  #### 2) String compare by == operator
+  The = = operator compares references not values.
+  ```Java
       class Stringequalequal
       {  
         public static void main(String args[])
@@ -58,7 +58,7 @@
           System.out.println(s1==s3);//false(because s3 refers to instance created in nonpool)  
        }  
       }  
-    ```     
+  ```     
 
     #### 3) String compare by compareTo() method
     The String compareTo() method compares values lexicographically and returns an integer value that describes if first string is less than, equal to or greater than second string.
@@ -79,7 +79,7 @@
           String s3="H";  
           System.out.println(s1.compareTo(s2));//0  
           System.out.println(s1.compareTo(s3));//1(because s1>s3)  
-          System.out.println(s3.compareTo(s1));//-1(because s3 < s1 ) 
+          System.out.println(s3.compareTo(s1));//-1(because s3 < s1 )
        }  
       }  
     ```   
