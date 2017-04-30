@@ -10,79 +10,79 @@
     * By = = operator
     * By compareTo() method
 
-  #### 1) String compare by equals() method
-  The String equals() method compares the original content of the string. It compares values of string for equality. String class provides two methods:
-  * public boolean equals(Object another) compares this string to the specified object.
-  * public boolean equalsIgnoreCase(String another) compares this String to another string, ignoring case.
+    #### 1) String compare by equals() method
+    The String equals() method compares the original content of the string. It compares values of string for equality. String class provides two methods:
+     * public boolean equals(Object another) compares this string to the specified object.
+     * public boolean equalsIgnoreCase(String another) compares this String to another string, ignoring case.
 
-  ```Java
-    class Stringequals
-    {  
-      public static void main(String args[])
-      {  
-       String s1="Hello";  
-       String s2="Hello";  
-       String s3=new String("Hello");  
-       String s4="Hella";  
-       System.out.println(s1.equals(s2));//true  
-       System.out.println(s1.equals(s3));//true  
-       System.out.println(s1.equals(s4));//false  
-     }  
-    }  
-  ```
-
-  ```Java
-    class StringequalsIgnorecase
-    {  
-      public static void main(String args[])
-      {  
-       String s1="Hello";  
-       String s2="hello";  
-       System.out.println(s1.equals(s2));//false  
-       System.out.println(s1.equalsIgnoreCase(s2));//true
-     }  
-    }  
-  ```  
-
-  #### 2) String compare by == operator
-  The = = operator compares references not values.
-  ```Java
-      class Stringequalequal
+    ```Java
+      class Stringequals
       {  
         public static void main(String args[])
         {  
-          String s1="Hello";  
-          String s2="Hello";  
-          String s3=new String("Hello");  
-          System.out.println(s1==s2);//true (because both refer to same instance)  
-          System.out.println(s1==s3);//false(because s3 refers to instance created in nonpool)  
+         String s1="Hello";  
+         String s2="Hello";  
+         String s3=new String("Hello");  
+         String s4="Hella";  
+         System.out.println(s1.equals(s2));//true  
+         System.out.println(s1.equals(s3));//true  
+         System.out.println(s1.equals(s4));//false  
        }  
       }  
-  ```     
+    ```
 
-  #### 3) String compare by compareTo() method
+    ```Java
+      class StringequalsIgnorecase
+      {  
+        public static void main(String args[])
+        {  
+         String s1="Hello";  
+         String s2="hello";  
+         System.out.println(s1.equals(s2));//false  
+         System.out.println(s1.equalsIgnoreCase(s2));//true
+       }  
+      }  
+    ```  
+
+    #### 2) String compare by == operator
+    The = = operator compares references not values.
+    ```Java
+        class Stringequalequal
+        {  
+          public static void main(String args[])
+          {  
+            String s1="Hello";  
+            String s2="Hello";  
+            String s3=new String("Hello");  
+            System.out.println(s1==s2);//true (because both refer to same instance)  
+            System.out.println(s1==s3);//false(because s3 refers to instance created in nonpool)  
+         }  
+        }  
+    ```     
+
+    #### 3) String compare by compareTo() method
     The String compareTo() method compares values lexicographically and returns an integer value that describes if first string is less than, equal to or greater than second string.
 
     Suppose s1 and s2 are two string variables. If:
 
-    * s1 == s2 :0
-    * s1 > s2   :positive value
-    * s1 < s2   :negative value
+     * s1 == s2 :0
+     * s1 > s2   :positive value
+     * s1 < s2   :negative value
 
-  ```Java
-      class StringCompareto
-      {  
-        public static void main(String args[])
+    ```Java
+        class StringCompareto
         {  
-          String s1="Hello";  
-          String s2="Hello";  
-          String s3="H";  
-          System.out.println(s1.compareTo(s2));//0  
-          System.out.println(s1.compareTo(s3));//1(because s1>s3)  
-          System.out.println(s3.compareTo(s1));//-1(because s3 < s1 )
-       }  
-      }  
-  ```   
+          public static void main(String args[])
+          {  
+            String s1="Hello";  
+            String s2="Hello";  
+            String s3="H";  
+            System.out.println(s1.compareTo(s2));//0  
+            System.out.println(s1.compareTo(s3));//1(because s1>s3)  
+            System.out.println(s3.compareTo(s1));//-1(because s3 < s1 )
+         }  
+        }  
+    ```   
 
 2. Null object references: What is the keyword for a null/nil/etc object reference?
 3. Name of instance reference in instance method: What is the keyword for referring to an object instance in an instance method? (this/self/?)
