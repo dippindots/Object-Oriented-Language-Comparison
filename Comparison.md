@@ -560,9 +560,70 @@
     
     During the sweep phase the heap is traversed to find the gaps between the live objects. These gaps are recorded in a free list and are made available for new object allocation.
     
+    The mostly concurrent mark phase is divided into four parts:
     
+    * Initial marking, where the root set of live objects is identified. This is done while the Java threads are paused.
+    * Concurrent marking, where the references from the root set are followed in order to find and mark the rest of the live objects in the heap. This is done while the Java threads are running.
+    * Precleaning, where changes in the heap during the concurrent mark phase are identified and any additional live objects are found and marked. This is done while the Java threads are running.
+    * Final marking, where changes during the precleaning phase are identified and any additional live objects are found and marked. This is done while the Java threads are paused.
+    
+    The mostly concurrent sweep phase consists of four parts:
+    
+    * Sweeping of one half of the heap. This is done while the Java threads are running and are allowed to allocate objects in the part of the heap that isn’t currently being swept.
+    * A short pause to switch halves.
+    * Sweeping of the other half of the heap. This is done while the Java threads are running and are allowed to allocate objects in the part of the heap that was swept first.
+    * A short pause for synchronization and recording statistics.
+    
+    Garbage collection is intended to remove the cause for classic memory leaks: unreachable-but-not-deleted objects in memory. However, this works only for memory leaks in the original sense. It’s possible to have unused objects that are still reachable by an application because the developer simply forgot to dereference them. Such objects cannot be garbage-collected. Even worse, such a logical memory leak cannot be detected by any software. Even the best analysis software can only highlight suspicious objects. We will examine memory leak analysis in the Analyzing the Performance Impact of Memory Utilization and Garbage Collection section. When objects are no longer referenced directly or indirectly by a GC root, they will be removed. There are no classic memory leaks. Analysis cannot really identify memory leaks; it can only point out suspicious objects.
+    
+    In conclusion, only objects that are not referenced are to be garbage collected. 
+    
+    For example, objects in the following code is never get collected and your memory will be full just to do nothing.
+    
+    ```Java 
+    List objs = new ArrayList();
+    for (int i = 0; i  < Integer.MAX_VALUE; i++) objs.add(new Object());
+    ```
+    
+    But if you don't reference those object ... you can loop as much as you like without memory problem.
+    
+    ```Java 
+    List objs = new ArrayList();
+    for (int i = 0; i  < Integer.MAX_VALUE; i++) new Object();
+    ```
 
+    Another example:
+    
+    ```Java 
+    public static Object otherMethod(Object obj) {
+        return new Object();
+    }
 
+    public static void main(String[] args) {
+        Object myObj = new Object();
+        myObj = otherMethod(myObj);
+        // ... more code ...  
+    }
+    ```
+    
+    After you call otherMethod() the original Object created is made unreachable and that's "garbage" that gets garbage collected.
+    
+    There are many ways to make object unreferenced:
+    
+    * By nulling the reference
+    
+    
+    
+    * By assigning a reference to another
+    
+    
+    
+    * By annonymous object etc.
+    
+    
+    
+    
+There is no manual way of doing garbage collection in Java.
 
 7. Interfaces/protocols/?: How do interfaces/protocols/etc work?
 8. Functional features: What functional features are supported and how do they work? (lambdas, closures, etc)
