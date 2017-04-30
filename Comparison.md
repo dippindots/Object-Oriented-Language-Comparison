@@ -60,7 +60,7 @@
       }  
   ```     
 
-    #### 3) String compare by compareTo() method
+  #### 3) String compare by compareTo() method
     The String compareTo() method compares values lexicographically and returns an integer value that describes if first string is less than, equal to or greater than second string.
 
     Suppose s1 and s2 are two string variables. If:
@@ -69,7 +69,7 @@
     * s1 > s2   :positive value
     * s1 < s2   :negative value
 
-    ```Java
+  ```Java
       class StringCompareto
       {  
         public static void main(String args[])
@@ -82,7 +82,7 @@
           System.out.println(s3.compareTo(s1));//-1(because s3 < s1 )
        }  
       }  
-    ```   
+  ```   
 
 2. Null object references: What is the keyword for a null/nil/etc object reference?
 3. Name of instance reference in instance method: What is the keyword for referring to an object instance in an instance method? (this/self/?)
