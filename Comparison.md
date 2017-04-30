@@ -329,6 +329,7 @@
   Here is a list of some standard exceptions in Python:
   
   EXCEPTION NAME | DESCRIPTION
+  --- | ---
   Exception	 | Base class for all exceptions
   StopIteration	 | Raised when the next() method of an iterator does not point to any object.
   SystemExit	 | Raised by the sys.exit() function.  
