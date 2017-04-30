@@ -43,6 +43,23 @@
      }  
     }  
   ```  
+
+    #### 2) String compare by == operator
+    The = = operator compares references not values.
+    ```Java
+      class Stringequalequal
+      {  
+        public static void main(String args[])
+        {  
+          String s1="Sachin";  
+          String s2="Sachin";  
+          String s3=new String("Sachin");  
+          System.out.println(s1==s2);//true (because both refer to same instance)  
+          System.out.println(s1==s3);//false(because s3 refers to instance created in nonpool)  
+       }  
+      }  
+    ```     
+
 2. Null object references: What is the keyword for a null/nil/etc object reference?
 3. Name of instance reference in instance method: What is the keyword for referring to an object instance in an instance method? (this/self/?)
 4. Name spaces: How are name spaces implemented and used?
