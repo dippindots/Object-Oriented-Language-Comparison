@@ -472,14 +472,20 @@
          print("result is", result)
      finally:
          print("executing finally clause")
+  ```
 
->>> divide(2, 1)
+  executing: divide(2, 1)
+  ```
     result is 2.0
     executing finally clause
->>> divide(2, 0)
+  ```
+  executing: divide(2, 0)
+  ```
     division by zero!
     executing finally clause
->>> divide("2", "1")
+  ```
+  executing: divide("2", "1")
+  ```
     executing finally clause
   ```
   
