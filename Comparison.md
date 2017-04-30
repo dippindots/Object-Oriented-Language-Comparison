@@ -647,7 +647,7 @@
     
 * ### Python
 
-  **The big difference of memory management between Python and Java is that there is no manual way of doing garbage collection in Java, however, you can create an object and the Python Virtual Machine handles the memory needed and where it shall be placed in the memory layout in Python.**
+  **One difference of memory management between Python and Java is that there is no manual way of doing garbage collection in Java, however, you can create an object and the Python Virtual Machine handles the memory needed and where it shall be placed in the memory layout in Python.**
   
   Memory management in Python involves a private heap containing all Python objects and data structures. The management of this private heap is ensured internally by the Python memory manager. The Python memory manager has different components which deal with various dynamic storage management aspects, like sharing, segmentation, preallocation or caching.
   
