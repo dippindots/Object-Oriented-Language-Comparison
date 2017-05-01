@@ -652,6 +652,48 @@
   Memory management in Python involves a private heap containing all Python objects and data structures. The management of this private heap is ensured internally by the Python memory manager. The Python memory manager has different components which deal with various dynamic storage management aspects, like sharing, segmentation, preallocation or caching.
   
   The algorithm used for garbage collecting is called Reference counting. That is the Python VM keeps an internal journal of how many references refer to an object, and automatically garbage collects it when there are no more references refering to it.
+  
+  On top of the raw memory allocator, several object-specific allocators operate on the same heap and implement distinct memory management policies adapted to the peculiarities of every object type. For example, integer objects are managed differently within the heap than strings, tuples or dictionaries because integers imply different storage requirements and speed/space tradeoffs. The Python memory manager thus delegates some of the work to the object-specific allocators, but ensures that the latter operate within the bounds of the private heap.
+
+  To avoid memory corruption, extension writers should never try to operate on Python objects with the functions exported by the C library: malloc(), calloc(), realloc() and free(). 
+ 
+  ```Python
+    char *buf = (char *) PyMem_Malloc(BUFSIZ); /* for I/O */
+
+    if (buf == NULL)
+        return PyErr_NoMemory();
+    /* ...Do some I/O operation involving buf... */
+    res = PyBytes_FromString(buf);
+    PyMem_Free(buf); /* allocated with PyMem_Malloc */
+    return res;
+  ```
+  
+  Python uses two strategies for memory allocation reference counting and garbage collection.
+  
+  Reference counting works by counting the number of times an object is referenced by other objects in the system. When references to an object are removed, the reference count for an object is decremented. When the reference count becomes zero the object is deallocated.
+  
+  Reference counting is extremely efficient but it does have some caveats. One such caveat is that it cannot handle reference cycles. A reference cycle is when there is no way to reach an object but its reference count is still greater than zero. The easiest way to create a reference cycle is to create an object which refers to itself as in the example below:
+  
+  ```Python
+  def make_cycle():
+    l = [ ]
+    l.append(l)
+  
+  make_cycle()
+  ```
+  
+  Because make_cycle() creates an object l which refers to itself, the object l will not automatically be freed when the function returns. This will cause the memory that l is using to be held onto until the Python garbage collector is invoked.
+  
+   Python schedules garbage collection based upon a threshold of object allocations and object deallocations. When the number of allocations minus the number of deallocations are greater than the threshold number, the garbage collector is run. Python provides gc module.
+   
+   The garbage collection can be invoked manually in the following way:
+   
+   ```Python
+    import gc
+    collected = gc.collect()
+    print "Garbage collector: collected %d objects." % (collected)
+   ```
+  
 
 7. Interfaces/protocols/?: How do interfaces/protocols/etc work?
 8. Functional features: What functional features are supported and how do they work? (lambdas, closures, etc)
