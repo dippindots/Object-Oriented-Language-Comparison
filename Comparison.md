@@ -684,7 +684,7 @@
   
   Because make_cycle() creates an object l which refers to itself, the object l will not automatically be freed when the function returns. This will cause the memory that l is using to be held onto until the Python garbage collector is invoked.
   
-   Python schedules garbage collection based upon a threshold of object allocations and object deallocations. When the number of allocations minus the number of deallocations are greater than the threshold number, the garbage collector is run. Python provides gc module.
+  Python schedules garbage collection based upon a threshold of object allocations and object deallocations. When the number of allocations minus the number of deallocations are greater than the threshold number, the garbage collector is run. Python provides gc module.
    
    The garbage collection can be invoked manually in the following way:
    
