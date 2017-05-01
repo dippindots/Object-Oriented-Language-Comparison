@@ -699,5 +699,34 @@
 8. Functional features: What functional features are supported and how do they work? (lambdas, closures, etc)
 9. Reflection: What reflection abilities are supported?
 10. **Procedural programming support: Can functions be created outside of classes or must all functions be methods of a class?**
+    * ### Java
+    
+    **In Java, you have to declare all the methods within the same class definition.**
+    
+    Java has its own object file format - the .class file. Class files contain a wealth of information about their contents that allows the environment to do things with classes at runtime that the native linkage mechanism couldn't even dream about. That information has to start somewhere, and that starting point is the class. The available information allows the compiled code to describe itself without the need for separate files containing a description in source code as you'd have in C, C++ or other languages. That gives you all of the type safety benefits languages using the native linkage lack, even at runtime, and is what enables you to fish an arbitrary class out of a file using reflection and use it with a guaranteed failure if something doesn't match up.
+    
+    * ### Python
+    
+    **In Python, you can define a function outside of a class and then use it in the class body as a method.**
+    
+    ```Python
+    def func(self):
+        print "func"
+
+    class MyClass(object):
+        myMethod = func
+    ```
+    
+    You can also add a function to a class after it has been defined:
+    
+    ```Python
+    class MyClass(object):
+        pass
+    def func(self):
+        print "func"
+    MyClass.myMethod = func
+    ```
+    
+
 11. Singleton: How to implement a thread-safe singleton.
 12. Unique features: Describe any unique features of the language.
