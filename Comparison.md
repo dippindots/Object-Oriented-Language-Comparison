@@ -705,6 +705,25 @@
     
     Java has its own object file format - the .class file. Class files contain a wealth of information about their contents that allows the environment to do things with classes at runtime that the native linkage mechanism couldn't even dream about. That information has to start somewhere, and that starting point is the class. The available information allows the compiled code to describe itself without the need for separate files containing a description in source code as you'd have in C, C++ or other languages. That gives you all of the type safety benefits languages using the native linkage lack, even at runtime, and is what enables you to fish an arbitrary class out of a file using reflection and use it with a guaranteed failure if something doesn't match up.
     
+    There are four modifiers in Java:
+    * Visible to the package, the _default_. No modifiers are needed.
+    * Visible to the class only (_private_).
+    * Visible to the world (_public_).
+    * Visible to the package and all subclasses (_protected_).
+    
+    However, when you use those modifiers to create function, you still can't use the function in Java, you need to create object for those function. However you can use _static_ modifiers to create static function which can be used directly.
+    
+    There is no concept of Global Variables in Java. Although, you can achieve it using some thing like this:
+    
+    ```Java
+        class Globals {
+            public static String GLOBAL_VARIABLE_MESSAGE = "Hello World!";
+        }
+    ```
+    
+    And use it somewhere in the code using _Globals.GLOBAL_VARIABLE_MESSAGE_.
+    
+    
     * ### Python
     
     **In Python, you can define a function outside of a class and then use it in the class body as a method.**
