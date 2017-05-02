@@ -85,6 +85,27 @@
     ```   
 
 2. Null object references: What is the keyword for a null/nil/etc object reference?
+
+    ### Java
+    In object-oriented computer programming, a **Null Object** is an object with no referenced value or with defined neutral ("null") behavior. The Null Object design pattern describes the uses of such objects and their behavior (or lack thereof).
+
+      ```Java
+              public interface Animal {
+          void makeSound();
+          }
+
+          public class Dog implements Animal {
+          public void makeSound() {
+          System.out.println("woof!");
+          }
+        }
+
+          public class NullAnimal implements Animal {
+          public void makeSound() {
+          }
+        }  
+      ```
+      In this example, myAnimal.makeSound(); will throw a NullPointerException. Therefore, additional code may be necessary to test for null objects.The null object pattern solves this problem by providing a special NullAnimal class which can be instantiated as an object of type Animal.
 3. Name of instance reference in instance method: What is the keyword for referring to an object instance in an instance method? (this/self/?)
 4. Name spaces: How are name spaces implemented and used?
 5. **Errors and exception handling: How are errors and/or exceptions handled/structured/implemented?**
@@ -327,35 +348,35 @@
 
   #### Exception handling
   Here is a list of some standard exceptions in Python:
-  
+
   EXCEPTION NAME | DESCRIPTION
   --- | ---
   Exception	 | Base class for all exceptions
   StopIteration	 | Raised when the next() method of an iterator does not point to any object.
   SystemExit	 | Raised by the sys.exit() function.  
-  StandardError	 | Base class for all built-in exceptions except StopIteration and SystemExit. 
-  ArithmeticError	 | Base class for all errors that occur for numeric calculation. 
-  OverflowError	 | Raised when a calculation exceeds maximum limit for a numeric type. 
-  FloatingPointError   | Raised when a floating point calculation fails. 
-  ZeroDivisionError	 | Raised when division or modulo by zero takes place for all numeric types. 
-  AssertionError	 | Raised in case of failure of the Assert statement. 
-  AttributeError	 | Raised in case of failure of attribute reference or assignment. 
-  EOFError	 | Raised when there is no input from either the raw_input() or input() function and the end of file is reached. 
-  ImportError	 | Raised when an import statement fails. 
-  KeyboardInterrupt	 | Raised when the user interrupts program execution, usually by pressing Ctrl+c. 
-  LookupError	 | Base class for all lookup errors. 
-  IndexError   |  Raised when an index is not found in a sequence. 
-  IOError    | Raised when an input/ output operation fails, such as the print statement or the open() function when trying to open a file that does not exist. 
+  StandardError	 | Base class for all built-in exceptions except StopIteration and SystemExit.
+  ArithmeticError	 | Base class for all errors that occur for numeric calculation.
+  OverflowError	 | Raised when a calculation exceeds maximum limit for a numeric type.
+  FloatingPointError   | Raised when a floating point calculation fails.
+  ZeroDivisionError	 | Raised when division or modulo by zero takes place for all numeric types.
+  AssertionError	 | Raised in case of failure of the Assert statement.
+  AttributeError	 | Raised in case of failure of attribute reference or assignment.
+  EOFError	 | Raised when there is no input from either the raw_input() or input() function and the end of file is reached.
+  ImportError	 | Raised when an import statement fails.
+  KeyboardInterrupt	 | Raised when the user interrupts program execution, usually by pressing Ctrl+c.
+  LookupError	 | Base class for all lookup errors.
+  IndexError   |  Raised when an index is not found in a sequence.
+  IOError    | Raised when an input/ output operation fails, such as the print statement or the open() function when trying to open a file that does not exist.
   SystemError	  | Raised when the interpreter finds an internal problem, but when this error is encountered the Python interpreter does not exit.
   SystemExit	  | Raised when Python interpreter is quit by using the sys.exit() function. If not handled in the code, causes the interpreter to exit.
   TypeError	  | Raised when an operation or function is attempted that is invalid for the specified data type.
   ValueError	  | Raised when the built-in function for a data type has the valid type of arguments, but the arguments have invalid values specified.
   RuntimeError	  | Raised when a generated error does not fall into any category.
-  NotImplementedError	  | Raised when an abstract method that needs to be implemented in an inherited class is 
+  NotImplementedError	  | Raised when an abstract method that needs to be implemented in an inherited class is
 
 
   This part is similar to the exception handling in Java, as following:
-  
+
   ```Python
   while True:
      try:
@@ -364,15 +385,15 @@
      except ValueError:
          print("Oops!  That was no valid number.  Try again...")
   ```
-  
+
   The try statement works as follows.
   * First, the try clause (the statement(s) between the try and except keywords) is executed.
   * If no exception occurs, the except clause is skipped and execution of the try statement is finished.
   * If an exception occurs during execution of the try clause, the rest of the clause is skipped. Then if its type matches the exception named after the except keyword, the except clause is executed, and then execution continues after the try statement.
   * If an exception occurs which does not match the exception named in the except clause, it is passed on to outer try statements; if no handler is found, it is an unhandled exception and execution stops with a message as shown above.
-  
+
   A try statement may have more than one except clause, to specify handlers for different exceptions. At most one handler will be executed. Handlers only handle exceptions that occur in the corresponding try clause, not in other handlers of the same try statement. An except clause may name multiple exceptions as a parenthesized tuple, for example:
-  
+
   ```Python
   except (RuntimeError, TypeError, NameError):
      pass
@@ -380,18 +401,18 @@
 
   #### Assertions
   An assertion is a sanity-check that you can turn on or turn off when you are done with your testing of the program.
-  
+
   **Here is a big difference between Java and Python since there is no _assertion_ in Java. If you would like to realize an _assertion_, you have to use a _throw-if_ statement (or to be more accurate, a _throw-if-not_ statement). An expression is tested, and if the result comes up false, an exception is threw.**
-  
+
   The syntax for assert is:
-  
+
   ```Python
   assert Expression[, Arguments]
   ```
-  
+
   If the assertion fails, Python uses ArgumentExpression as the argument for the AssertionError. AssertionError exceptions can be caught and handled like any other exception using the try-except statement, but if not handled, they will terminate the program and produce a traceback.
   This is a function that converts a temperature from degrees Kelvin to degrees Fahrenheit. Since zero degrees Kelvin is as cold as it gets, the function bails out if it sees a negative temperature:
-  
+
   ```Python
   #!/usr/bin/python
 
@@ -403,9 +424,9 @@
     print int(KelvinToFahrenheit(505.78))
     print KelvinToFahrenheit(-5)
   ```
-  
+
   When the above code is executed, it produces the following result:
-  
+
   ```Python
     32.0
     451
@@ -416,34 +437,34 @@
         assert (Temperature >= 0),"Colder than absolute zero!"
     AssertionError: Colder than absolute zero!
   ```
-  
-  
+
+
 
   #### Raising Exception
-  
+
   The raise statement allows the programmer to force a specified exception to occur. The sole argument to raise indicates the exception to be raised. This must be either an exception instance or an exception class (a class that derives from Exception). If an exception class is passed, it will be implicitly instantiated by calling its constructor with no arguments. The general syntax for the raise statement is as follows.
-  
+
   ```Python
     raise [Exception [, args [, traceback]]]
   ```
-  
+
   Exception is the type of exception (for example, NameError) and argument is a value for the exception argument. The argument is optional; if not supplied, the exception argument is None.The final argument, traceback, is also optional (and rarely used in practice), and if present, is the traceback object used for the exception.
-  If you need to determine whether an exception was raised but don’t intend to handle it, a simpler form of the raise statement allows you to re-raise the exception.For example, an exception can be a string, a class or an object. Most of the exceptions that the Python core raises are classes, with an argument that is an instance of the class. Defining new exceptions is quite easy and can be done as follows: 
-  
+  If you need to determine whether an exception was raised but don’t intend to handle it, a simpler form of the raise statement allows you to re-raise the exception.For example, an exception can be a string, a class or an object. Most of the exceptions that the Python core raises are classes, with an argument that is an instance of the class. Defining new exceptions is quite easy and can be done as follows:
+
   ```Python
     def functionName( level ):
        if level < 1:
           raise "Invalid level!", level
           # The code below to this would not be executed
           # if we raise the exception
-  ``` 
-  
+  ```
+
   **This _raise_ phrase realizes similar functionalities with the _throw/throws_ phrase in Java.**
-  
+
   Python also allows you to create your own exceptions by deriving classes from the standard built-in exceptions, which is similar to Java -- Writing your own exceptions and then throwing the exceptions.
-  
+
   This is an example related to RuntimeError. One class is created that is subclassed from RuntimeError. This is useful when you need to display more specific information when an exception is caught.
-  
+
   In the try block, the user-defined exception is raised and caught in the except block. The variable e is used to create an instance of the class Networkerror.
 
   ```Python
@@ -457,11 +478,11 @@
     except Networkerror,e:
        print e.args
   ```
-  
+
   #### Finally blocks
-  
+
   **Similarly, Python also has _finally_ clause like _final_ blocks in Java.** A _finally_ clause is always executed before leaving the _try_ statement, whether an exception has occurred or not. When an exception has occurred in the _try_ clause and has not been handled by an except clause (or it has occurred in an except or else clause), it is re-raised after the _finally_ clause has been executed. The _finally_ clause is also executed “on the way out” when any other clause of the _try_ statement is left via a _break_, _continue_ or _return_ statement.
-  
+
   ```Python
   def divide(x, y):
      try:
@@ -488,11 +509,11 @@
   ```
     executing finally clause
   ```
-  
+
   The TypeError raised by dividing two strings is not handled by the except clause and therefore re-raised after the finally clause has been executed.
-  
+
   #### Predefined Clean-up Actions
-  
+
   **There is another big difference between Java and Python, which is the fact that Java doesn't have _with_ statment but Python does.**
   When we are trying to open a file and print its contents to the screen by using the following code.
 
@@ -500,7 +521,7 @@
   for line in open("myfile.txt"):
     print(line, end="")
   ```
-  
+
   The problem with this code is that it leaves the file open for an indeterminate amount of time after this part of the code has finished executing. This is not an issue in simple scripts, but can be a problem for larger applications. The with statement allows objects like files to be used in a way that ensures they are always cleaned up promptly and correctly.
 
   ```Python
@@ -508,10 +529,10 @@
     for line in f:
         print(line, end="")
   ```
-  
+
   It is much convenient to use the _with_ statement when opening a file, however, in Java, you still need to use _try-catch_ statement to catch the exceptions could happened during opening files.
 
-  
+
 
 6. **Memory management and garbage collection: How is memory management and garbage collection handled?**
 
@@ -519,82 +540,82 @@
 
 * ### Java
   #### The Heap and the Nursery
-  
+
   Java objects reside in an area called the _heap_. The _heap_ is created when the JVM starts up and may increase or decrease in size while the application runs. When the _heap_ becomes full, _garbage_ is collected. During the _garbage collection_ objects that are no longer used are cleared, thus making space for new objects.
-  
+
   Object creation is faster because global synchronization with the operating system is not needed for every single object. An allocation simply claims some portion of a memory array and moves the offset pointer forward. The next allocation starts at this offset and claims the next portion of the array.
-  
+
   When an object is no longer used, the garbage collector reclaims the underlying memory and reuses it for future object allocation. This means there is no explicit deletion and no memory is given back to the operating system.
 
   The _heap_ is sometimes divided into two areas (or generations) called the _nursery_ (or young space) and the _old space_. The _nursery_ is a part of the _heap_ reserved for allocation of new objects. When the _nursery_ becomes full, _garbage_ is collected by running a special young collection, where all objects that have lived long enough in the _nursery_ are promoted (moved) to the _old space_, thus freeing up the _nursery_ for more object allocation. When the _old space_ becomes full garbage is collected there, a process called an _old collection_.
-  
+
   The reasoning behind a _nursery_ is that most objects are temporary and short lived. A _young collection_ is designed to be swift at finding newly allocated objects that are still alive and moving them away from the nursery. Typically, a _young collection_ frees a given amount of memory much faster than an _old collection_ or a _garbage collection_ of a single-generational _heap_ (a heap without a nursery).
-  
+
   #### Garbage Collection
-  
+
   Garbage collection is the process of freeing space in the heap or the nursery for allocation of new objects.
-  
+
   Every object tree must have one or more root objects. As long as the application can reach those roots, the whole tree is reachable. Special objects called garbage-collection roots are always reachable and so is any object that has a garbage-collection root at its own root.
-  
+
   There are four kinds of GC roots in Java:
   * Local variables are kept alive by the stack of a thread. This is not a real object virtual reference and thus is not visible. For all intents and purposes, local variables are GC roots.
   * Active Java threads are always considered live objects and are therefore GC roots. This is especially important for thread local variables.
   * Static variables are referenced by their classes. This fact makes them de facto GC roots. Classes themselves can be garbage-collected, which would remove all referenced static variables. This is of special importance when we use application servers, OSGi containers or class loaders in general. We will discuss the related problems in the Problem Patterns section.
   *JNI References are Java objects that the native code has created as part of a JNI call. Objects thus created are treated specially because the JVM does not know if it is being referenced by the native code or not. Such objects represent a very special form of GC root, which we will examine in more detail in the Problem Patterns section below.
-  
+
   Therefore, a simple Java application has the following GC roots:
   * Local variables in the main method
   * The main thread
   * Static variables of the main class
-  
+
   Non-reachable objects become garbage.
-  
+
   * **The Mark and Sweep Model**
-  
+
     Live objects are tracked and everything else designated garbage. A mark and sweep garbage collection consists of two phases, the mark phase and the sweep phase.
-    
+
     * It traverses all object references, starting with the GC roots, and marks every object found as alive.
     * All of the heap memory that is not occupied by marked objects is reclaimed. It is simply marked as free, essentially swept free of unused objects.
-    
+
     During the mark phase all objects that are reachable from Java threads, native handles and other root sources are marked as alive, as well as the objects that are reachable from these objects and so forth. This process identifies and marks all objects that are still used, and the rest can be considered garbage.
-    
+
     During the sweep phase the heap is traversed to find the gaps between the live objects. These gaps are recorded in a free list and are made available for new object allocation.
-    
+
     The mostly concurrent mark phase is divided into four parts:
-    
+
     * Initial marking, where the root set of live objects is identified. This is done while the Java threads are paused.
     * Concurrent marking, where the references from the root set are followed in order to find and mark the rest of the live objects in the heap. This is done while the Java threads are running.
     * Precleaning, where changes in the heap during the concurrent mark phase are identified and any additional live objects are found and marked. This is done while the Java threads are running.
     * Final marking, where changes during the precleaning phase are identified and any additional live objects are found and marked. This is done while the Java threads are paused.
-    
+
     The mostly concurrent sweep phase consists of four parts:
-    
+
     * Sweeping of one half of the heap. This is done while the Java threads are running and are allowed to allocate objects in the part of the heap that isn’t currently being swept.
     * A short pause to switch halves.
     * Sweeping of the other half of the heap. This is done while the Java threads are running and are allowed to allocate objects in the part of the heap that was swept first.
     * A short pause for synchronization and recording statistics.
-    
+
     Garbage collection is intended to remove the cause for classic memory leaks: unreachable-but-not-deleted objects in memory. However, this works only for memory leaks in the original sense. It’s possible to have unused objects that are still reachable by an application because the developer simply forgot to dereference them. Such objects cannot be garbage-collected. Even worse, such a logical memory leak cannot be detected by any software. Even the best analysis software can only highlight suspicious objects. We will examine memory leak analysis in the Analyzing the Performance Impact of Memory Utilization and Garbage Collection section. When objects are no longer referenced directly or indirectly by a GC root, they will be removed. There are no classic memory leaks. Analysis cannot really identify memory leaks; it can only point out suspicious objects.
-    
-    In conclusion, only objects that are not referenced are to be garbage collected. 
-    
+
+    In conclusion, only objects that are not referenced are to be garbage collected.
+
     For example, objects in the following code is never get collected and your memory will be full just to do nothing.
-    
-    ```Java 
+
+    ```Java
     List objs = new ArrayList();
     for (int i = 0; i  < Integer.MAX_VALUE; i++) objs.add(new Object());
     ```
-    
+
     But if you don't reference those object ... you can loop as much as you like without memory problem.
-    
-    ```Java 
+
+    ```Java
     List objs = new ArrayList();
     for (int i = 0; i  < Integer.MAX_VALUE; i++) new Object();
     ```
 
     Another example:
-    
-    ```Java 
+
+    ```Java
     public static Object otherMethod(Object obj) {
         return new Object();
     }
@@ -605,35 +626,35 @@
         // ... more code ...  
     }
     ```
-    
+
     After you call otherMethod() the original Object created is made unreachable and that's "garbage" that gets garbage collected.
-    
+
     There are many ways to make object unreferenced:
-    
+
     * By nulling the reference
-    
-    ```Java 
+
+    ```Java
     Employee e=new Employee();  
     e=null;  
     ```
-    
+
     * By assigning a reference to another
-    
-    ```Java 
+
+    ```Java
     Employee e1=new Employee();  
     Employee e2=new Employee();  
     e1=e2;//now the first object referred by e1 is available for garbage collection  
     ```
-    
+
     * By annonymous object etc.
-    
-    ```Java 
+
+    ```Java
     new Employee();
     ```
-    
+
     * By isolating a Reference
-    
-    ```Java 
+
+    ```Java
     Referen r2 = new Referen ();
     Referen r3= new Referen ();
     Referen r4= new Referen ();
@@ -644,19 +665,19 @@
     r3 = null;
     r4 = null;
     ```
-    
+
 * ### Python
 
   **One difference of memory management between Python and Java is that there is no manual way of doing garbage collection in Java, however, you can create an object and the Python Virtual Machine handles the memory needed and where it shall be placed in the memory layout in Python.**
-  
+
   Memory management in Python involves a private heap containing all Python objects and data structures. The management of this private heap is ensured internally by the Python memory manager. The Python memory manager has different components which deal with various dynamic storage management aspects, like sharing, segmentation, preallocation or caching.
-  
+
   The algorithm used for garbage collecting is called Reference counting. That is the Python VM keeps an internal journal of how many references refer to an object, and automatically garbage collects it when there are no more references refering to it.
-  
+
   On top of the raw memory allocator, several object-specific allocators operate on the same heap and implement distinct memory management policies adapted to the peculiarities of every object type. For example, integer objects are managed differently within the heap than strings, tuples or dictionaries because integers imply different storage requirements and speed/space tradeoffs. The Python memory manager thus delegates some of the work to the object-specific allocators, but ensures that the latter operate within the bounds of the private heap.
-  
-  To avoid memory corruption, extension writers should never try to operate on Python objects with the functions exported by the C library: malloc(), calloc(), realloc() and free(). 
- 
+
+  To avoid memory corruption, extension writers should never try to operate on Python objects with the functions exported by the C library: malloc(), calloc(), realloc() and free().
+
   ```Python
     char *buf = (char *) PyMem_Malloc(BUFSIZ); /* for I/O */
 
@@ -667,67 +688,67 @@
     PyMem_Free(buf); /* allocated with PyMem_Malloc */
     return res;
   ```
-  
+
   Python uses two strategies for memory allocation reference counting and garbage collection.
-  
+
   Reference counting works by counting the number of times an object is referenced by other objects in the system. When references to an object are removed, the reference count for an object is decremented. When the reference count becomes zero the object is deallocated.
-  
+
   Reference counting is extremely efficient but it does have some caveats. One such caveat is that it cannot handle reference cycles. A reference cycle is when there is no way to reach an object but its reference count is still greater than zero. The easiest way to create a reference cycle is to create an object which refers to itself as in the example below:
-  
+
   ```Python
   def make_cycle():
     l = [ ]
     l.append(l)
-  
+
   make_cycle()
   ```
-  
+
   Because make_cycle() creates an object l which refers to itself, the object l will not automatically be freed when the function returns. This will cause the memory that l is using to be held onto until the Python garbage collector is invoked.
-  
+
   Python schedules garbage collection based upon a threshold of object allocations and object deallocations. When the number of allocations minus the number of deallocations are greater than the threshold number, the garbage collector is run. Python provides gc module.
-  
+
   The garbage collection can be invoked manually in the following way:
-   
+
    ```Python
     import gc
     collected = gc.collect()
     print "Garbage collector: collected %d objects." % (collected)
    ```
-  
+
 
 7. Interfaces/protocols/?: How do interfaces/protocols/etc work?
 8. Functional features: What functional features are supported and how do they work? (lambdas, closures, etc)
 9. Reflection: What reflection abilities are supported?
 10. **Procedural programming support: Can functions be created outside of classes or must all functions be methods of a class?**
     * ### Java
-    
+
     **In Java, you have to declare all the methods within the same class definition.**
-    
+
     Java has its own object file format - the .class file. Class files contain a wealth of information about their contents that allows the environment to do things with classes at runtime that the native linkage mechanism couldn't even dream about. That information has to start somewhere, and that starting point is the class. The available information allows the compiled code to describe itself without the need for separate files containing a description in source code as you'd have in C, C++ or other languages. That gives you all of the type safety benefits languages using the native linkage lack, even at runtime, and is what enables you to fish an arbitrary class out of a file using reflection and use it with a guaranteed failure if something doesn't match up.
-    
+
     There are four modifiers in Java:
     * Visible to the package, the _default_. No modifiers are needed.
     * Visible to the class only (_private_).
     * Visible to the world (_public_).
     * Visible to the package and all subclasses (_protected_).
-    
+
     However, when you use those modifiers to create function, you still can't use the function in Java, you need to create object for those function. However you can use _static_ modifiers to create static function which can be used directly.
-    
+
     There is no concept of Global Variables in Java. Although, you can achieve it using some thing like this:
-    
+
     ```Java
         class Globals {
             public static String GLOBAL_VARIABLE_MESSAGE = "Hello World!";
         }
     ```
-    
+
     And use it somewhere in the code using _Globals.GLOBAL_VARIABLE_MESSAGE_.
-    
-    
+
+
     * ### Python
-    
+
     **In Python, you can define a function outside of a class and then use it in the class body as a method.**
-    
+
     ```Python
     def func(self):
         print "func"
@@ -735,9 +756,9 @@
     class MyClass(object):
         myMethod = func
     ```
-    
+
     You can also add a function to a class after it has been defined:
-    
+
     ```Python
     class MyClass(object):
         pass
@@ -745,7 +766,7 @@
         print "func"
     MyClass.myMethod = func
     ```
-    
+
 
 11. Singleton: How to implement a thread-safe singleton.
 12. Unique features: Describe any unique features of the language.
