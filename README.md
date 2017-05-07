@@ -17,4 +17,4 @@
 * Jiahui Song: 5,6,10
 * Congyu Guo: 7,8,9
 
-[Comparison file](Comparison.md)
+See your work here: [Comparison file](Comparison.md)
