@@ -107,6 +107,212 @@
       ```
       In this example, myAnimal.makeSound(); will throw a NullPointerException. Therefore, additional code may be necessary to test for null objects.The null object pattern solves this problem by providing a special NullAnimal class which can be instantiated as an object of type Animal.
 3. Name of instance reference in instance method: What is the keyword for referring to an object instance in an instance method? (this/self/?)
+    ### Java
+    The keyword **this** is a Java language keyword that represents the current instance of the class in which it appears. It is used to access class variables and methods. Since all instance methods are virtual in Java, this can never be null. You can refer to any member of the current object from within an instance method or a constructor by using this.
+
+    **1.this: to refer current class instance variable**
+
+    The this keyword can be used to refer current class instance variable. If there is ambiguity between the instance variables and parameters, this keyword resolves the problem of ambiguity. In the example, we are using this keyword to distinguish local variable and instance variable.
+    ```Java
+    class Student{  
+    int rollno;  
+    String name;  
+    float fee;  
+    Student(int rollno,String name,float fee){  
+    this.rollno=rollno;  
+    this.name=name;  
+    this.fee=fee;  
+    }  
+    void display(){System.out.println(rollno+" "+name+" "+fee);}  
+    }  
+
+    class TestThis2{  
+    public static void main(String args[]){  
+    Student s1=new Student(111,"ankit",5000f);  
+    Student s2=new Student(112,"sumit",6000f);  
+    s1.display();  
+    s2.display();  
+    }}  
+    ```
+    Output:
+    ```Java
+    111 ankit 5000
+    112 sumit 6000  
+    ```
+    If local variables(formal arguments) and instance variables are different, there is no need to use this keyword like in the following program:
+    ```Java
+    class Student{  
+    int rollno;  
+    String name;  
+    float fee;  
+    Student(int r,String n,float f){  
+    rollno=r;  
+    name=n;  
+    fee=f;  
+    }  
+    void display(){System.out.println(rollno+" "+name+" "+fee);}  
+    }  
+
+    class TestThis3{  
+    public static void main(String args[]){  
+    Student s1=new Student(111,"ankit",5000f);  
+    Student s2=new Student(112,"sumit",6000f);  
+    s1.display();  
+    s2.display();  
+    }}    
+    ```
+
+    **2.this() : to invoke current class constructor**
+
+    The this() constructor call can be used to invoke the current class constructor. It is used to reuse the constructor. In other words, it is used for constructor chaining. It maintains the chain between the constructors i.e. it is used for constructor chaining.
+
+    Calling default constructor from parameterized constructor:
+    ```Java
+    class Student{  
+    int rollno;  
+    String name,course;  
+    float fee;  
+    Student(int rollno,String name,String course){  
+    this.rollno=rollno;  
+    this.name=name;  
+    this.course=course;  
+    }  
+    Student(int rollno,String name,String course,float fee){  
+    this(rollno,name,course);//reusing constructor  
+    this.fee=fee;  
+    }  
+    void display(){System.out.println(rollno+" "+name+" "+course+" "+fee);}  
+    }  
+    class TestThis7{  
+    public static void main(String args[]){  
+    Student s1=new Student(111,"ankit","java");  
+    Student s2=new Student(112,"sumit","java",6000f);  
+    s1.display();  
+    s2.display();  
+    }}
+    ```
+    Output:
+    ```Java
+    111 ankit java null
+    112 sumit java 6000
+    ```
+    Call to this() must be the first statement in constructor.
+    ```Java
+    class Student{  
+    int rollno;  
+    String name,course;  
+    float fee;  
+    Student(int rollno,String name,String course){  
+    this.rollno=rollno;  
+    this.name=name;  
+    this.course=course;  
+    }  
+    Student(int rollno,String name,String course,float fee){  
+    this.fee=fee;  
+    this(rollno,name,course);//C.T.Error  
+    }  
+    void display(){System.out.println(rollno+" "+name+" "+course+" "+fee);}  
+    }  
+    class TestThis8{  
+    public static void main(String args[]){  
+    Student s1=new Student(111,"ankit","java");  
+    Student s2=new Student(112,"sumit","java",6000f);  
+    s1.display();  
+    s2.display();  
+    }}
+    ```
+    Output:
+    ```Java
+    Compile Time Error: Call to this must be first statement in constructor
+    ```
+
+    **3.this: to pass as argument in the constructor call**
+    We can pass the this keyword in the constructor also. It is useful if we have to use one object in multiple classes.
+    ```Java
+    class B{  
+      A4 obj;  
+      B(A4 obj){  
+        this.obj=obj;  
+      }  
+      void display(){  
+        System.out.println(obj.data);//using data member of A4 class  
+      }  
+    }  
+
+    class A4{  
+      int data=10;  
+      A4(){  
+       B b=new B(this);  
+       b.display();  
+      }  
+      public static void main(String args[]){  
+       A4 a=new A4();  
+      }  
+    }  
+    ```
+    Output:
+    ```Java
+    Output:10
+    ```
+    ### Python
+    The keywords **self** is a reference to the class instance. Self is a conventional name, you could put anything else (being coherent) in its stead. For example there are self.name and self.age for student objects. It refers to the object itself, so when you are using it, you are declaring that .name and .age are properties of the Student objects. "Self" signifies an instance of a class. Whenever a new instance of a class is created, "self" indicates that it will have its own variables that aren't shared with other instances.
+    We could declare variables within a class without using the self reference, but then those variables would be shared by all instances of that class, which may not be what we intended. For the example above, self.age = age and self.name = name are declaring "instance variables" (as opposed to "class variables"), the values of which would be unique to the instantiated objects of that class. Otherwise, all students would have the same name and age!
+    The code should be like this:
+    ```Python
+    class Student:
+        #called each time you create a new Student instance
+        def __init__(self,name,age): #special method to initialize
+            self.name=name
+            self.age=age
+
+        def __str__(self): #special method called for example when you use print
+            return "Student %s is %s years old" %(self.name,self.age)
+
+        def call(self, msg): #silly example for custom method
+            return ("Hey, %s! "+msg) %self.name
+
+    #initializing two instances of the student class
+    bob=Student("Bob",20)
+    alice=Student("Alice",19)
+
+    #using them
+    print bob.name
+    print bob.age
+    print alice #this one only works if you define the __str__ method
+    print alice.call("Come here!") #notice you don't put a value for self
+
+    #you can modify attributes, like when alice ages
+    alice.age=20
+    print alice
+    ```
+    ### Difference
+
+    Technically both self and this are used for the same thing. They are used to access the variable associated with the current instance. Only difference is, you have to include self explicitly as first parameter to an instance method in Python, whereas this is not the case with Java. Moreover, the name self can be anything. It's not a keyword, as you already know. you can even change it to this, and it will work fine. But people like to use self, as it has now become a bit of a convention.
+    Here's a simple instance method accessing an instance variable in both Python and Java:
+
+    Python
+    ```Python
+    class Circle(object):
+        def __init__(self, radius):
+            # declare and initialize an instance variable
+            self.radius = radius
+
+    # Create object. Notice how you are passing only a single argument.  
+    # The object reference is implicitly bound to `self` parameter of `__init__` method
+    circle1 = Circle(5);
+    ```
+    Java
+    ```Java
+    class Circle {
+        private int radius;
+
+        public Circle(int radius) {
+            this.radius = radius;
+        }
+    }
+    Circle circle1 = new Circle(5);
+    ```  
+
 4. Name spaces: How are name spaces implemented and used?
 5. **Errors and exception handling: How are errors and/or exceptions handled/structured/implemented?**
 
