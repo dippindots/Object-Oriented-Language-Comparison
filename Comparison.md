@@ -84,6 +84,50 @@
         }  
     ```   
 
+  ### Python
+    There are three ways to compare string content in Python.
+
+     * By cmp() method
+     * By == operator
+     * By is method
+
+    #### 1)String compare by cmp() method
+    The return value is:
+    * A negative number if x is less than y.
+    * Zero if x is equal to y.
+    * A positive number if x is greater than y.
+
+    The built-in cmp() function will typically return only the values -1, 0, or 1. However, there are other places that expect functions with the same calling sequence, and those functions may return other values. It is best to observe only the sign of the result.
+
+    ```python
+    In [1]: cmp('aabbccdd','aabbccde')
+    Out[1]: -1
+    ```   
+
+    #### 2)String compare by == method    
+    **==** is for value equality. Use it when you would like to know if two objects have the same value.
+    ```python
+    string1 = "what's this"
+    string2 = "it's a string"
+
+    if string1 == string2:
+        print("equal")
+    else:
+        print("not equal")
+    ```       
+
+    #### 3)String compare by is== method    
+    **is** is for reference equality. Use it when you would like to know if two references refer to the same object.
+    ```python
+    string1 = "what's this"
+    string2 = "what's this"
+
+    if string1 is string2:
+        print("same object")
+    else:
+        print("not same")
+    ```    
+
 2. Null object references: What is the keyword for a null/nil/etc object reference?
 
     ### Java
