@@ -16,3 +16,5 @@
 * Xiang Li: 3,4,12
 * Jiahui Song: 5,6,10
 * Congyu Guo: 7,8,9
+
+[Comparison file](Comparison.md)
