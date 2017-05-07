@@ -87,9 +87,9 @@
     ### Python
       There are three ways to compare string content in Python.
 
-       * By cmp() method
-       * By == operator
-       * By is method
+      * By cmp() method
+      * By == operator
+      * By is method
 
       #### 1)String compare by cmp() method
       The return value is:
