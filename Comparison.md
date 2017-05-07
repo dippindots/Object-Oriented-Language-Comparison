@@ -347,6 +347,29 @@
       Geeks
       ```     
 
+      ### Python
+      The sole value of types.NoneType. None is frequently used to represent the absence of a value, as when default arguments are not passed to a function.
+
+      ```python
+        item = None
+        if item != None: # better: if item is not None
+            print('pass')
+        else:
+            print('fail')
+      ```   
+
+      Python also can use the try catch block to handle the exception of none reference:
+      ```python
+      item = None
+      try:
+          if item != None: # better: if item is not None
+              print('pass')
+          else:        
+              raise TypeError
+      except TypeError:
+          print('fail')
+      ```  
+
 3. Name of instance reference in instance method: What is the keyword for referring to an object instance in an instance method? (this/self/?)
     ### Java
     The keyword **this** is a Java language keyword that represents the current instance of the class in which it appears. It is used to access class variables and methods. Since all instance methods are virtual in Java, this can never be null. You can refer to any member of the current object from within an instance method or a constructor by using this.
