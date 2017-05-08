@@ -612,27 +612,27 @@
 
   Function and class scopes can be viewed as implicit namespaces that are inextricably linked with visibility, accessibility, and object lifetime.
 
-    **How are name spaces implemented?**
+   **How are name spaces implemented?**
 
-    The names of Java packages should be all lower case and consist of one or more identifiers, separated by dots (periods), such as one.two.three.
+   The names of Java packages should be all lower case and consist of one or more identifiers, separated by dots (periods), such as one.two.three.
 
-    If you want the contents of several Java source code files to be part of a package called one.two.three, then the following line of code must be the first non-comment line in each of those files:
-    ```java
-    package one.two.three;
-    ```
-    All files in a given package must be located in a single subdirectory corresponding to the package name, and the package name will be "translated" to a directory path on the local system (with each dot becoming a separator character beween portions of the path).
+   If you want the contents of several Java source code files to be part of a package called one.two.three, then the following line of code must be the first non-comment line in each of those files:
+   ```java
+   package one.two.three;
+   ```
+   All files in a given package must be located in a single subdirectory corresponding to the package name, and the package name will be "translated" to a directory path on the local system (with each dot becoming a separator character beween portions of the path).
 
-    For example, on a Unix or Linux system the class files of the package one.two.three must be stored at a location like this
-    ```java
-    /rest_of_path/one/two/three
-    ```
-    while on a Windows system it might be
-    ```java
-    C:\rest_of_path\one\two\three
-    ```
-    In addition, the part of the path down to one/two/three (or one\two\three) must be part of the classpath for the given system.
+   For example, on a Unix or Linux system the class files of the package one.two.three must be stored at a location like this
+   ```java
+   /rest_of_path/one/two/three
+   ```
+   while on a Windows system it might be
+   ```java
+   C:\rest_of_path\one\two\three
+   ```
+   In addition, the part of the path down to one/two/three (or one\two\three) must be part of the classpath for the given system.
 
-    If you plan to make your Java classes available to the world at large, it is recommended that you register an Internet domain name, and begin the name of each of your packages with your domain name reversed. This will guarantee a globally unique name for each of your packages. And this really does mean "globally", in the sense of "anywhere in the world".
+   If you plan to make your Java classes available to the world at large, it is recommended that you register an Internet domain name, and begin the name of each of your packages with your domain name reversed. This will guarantee a globally unique name for each of your packages. And this really does mean "globally", in the sense of "anywhere in the world".
 
     **How are name spaces used?**
 
