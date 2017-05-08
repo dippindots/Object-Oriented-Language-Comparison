@@ -1368,33 +1368,34 @@
     ### Java
     Java have these unique features
 
-    * Use of 16-bit Unicode for characters, including characters used for writing programs
-    * Run-time interpreter (C++ is generally a compiled language.)
-    * Support for dynamic and automatic compilation, loading and execution of classes found on the CLASSPATH
-    * Support for automatic garbage collection (In C++ garbage collection is the programmer's responsibility.)
-    * Support for Web "applets"
-    * Support for platform-independent GUI programming
-    * Support for event-driven programming
-    * Support for multithreading and synchronization
-    * Support for networking
-    * Support for security via a security manager
-    * Support for native language interface programming (keyword: native)
-    * A single-inheritance hierarchy with "Object" as the root superclass (keywords: extends and super)
-    * Everything must be in a class, including all method definitions.
-    * Interfaces (keywords: interface and implements)
-    * Code organization by packages (keywords: package and import)
-    * A "package" or "friendly" access protection category (but no corresponding keyword)
-    * All object creation at run-time via new
-    * A byte data type
-    * Fixed-size primitive types across all platforms
-    * Wrapper classes for primitive types
-    * The right-shift operator >>>, which uses zero extension, i.e., regarless of the sign, zeroes are inserted at the higher   order bits when the shift takes place.
-    * Automatic virtual (in the C++ sense) instance methods
-    * Arrays and strings as "first-class" objects, and use of + for conversion to String as well as + and += for string concatenation
-    * Final methods that cannot be redefined and final classes that cannot be extended (inherited from)
-    * Automatic initialization of primitive class members to zero and of member object references to null.
-    * Field initializers and static initialization blocks
-    * Built-in support for comment documentation, so that a source file can contain its own documentation, which is stripped out and formatted into HTML by the javadoc utility
-    * Inner class objects that secretly keep a handle to the object of the outer class that was involved in the creation of the inner class, permitting the inner class object to access members of the outer class object without qualification
-    * Methods that throw or specify "checked" exceptions, i.e., exceptions that must be dealt with (or at least recognized and not dealt with) by the programmer
-    * Object variables and parameters are always references (or "handles")
+    1. Use of 16-bit Unicode for characters, including characters used for writing programs
+    2. Run-time interpreter 
+    3. Support for dynamic and automatic compilation, loading and execution of classes found on the CLASSPATH
+    4. Support for automatic garbage collection 
+    5. Support for Web "applets"
+    6. Support for platform-independent GUI programming
+    7. Support for event-driven programming
+    8. Support for multithreading and synchronization
+    9. Support for networking
+    10. Support for security via a security manager
+    11. Support for native language interface programming (keyword: native)
+    12. A single-inheritance hierarchy with "Object" as the root superclass (keywords: extends and super)
+    13. Everything must be in a class, including all method definitions.
+    14. Interfaces (keywords: interface and implements)
+    15. Code organization by packages (keywords: package and import)
+    16. A "package" or "friendly" access protection category (but no corresponding keyword)
+    17. All object creation at run-time via new
+    18. A byte data type
+    19. Fixed-size primitive types across all platforms
+    20. Wrapper classes for primitive types
+    21. The right-shift operator >>>, which uses zero extension, i.e., regarless of the sign, zeroes are inserted at the higher   
+    22. order bits when the shift takes place.
+    23. Automatic virtual instance methods
+    24. Arrays and strings as "first-class" objects, and use of + for conversion to String as well as + and += for string concatenation
+    25. Final methods that cannot be redefined and final classes that cannot be extended (inherited from)
+    26. Automatic initialization of primitive class members to zero and of member object references to null.
+    27. Field initializers and static initialization blocks
+    28. Built-in support for comment documentation, so that a source file can contain its own documentation, which is stripped out and formatted into HTML by the javadoc utility
+    29. Inner class objects that secretly keep a handle to the object of the outer class that was involved in the creation of the inner class, permitting the inner class object to access members of the outer class object without qualification
+    30. Methods that throw or specify "checked" exceptions, i.e., exceptions that must be dealt with (or at least recognized and not dealt with) by the programmer
+    31. Object variables and parameters are always references (or "handles")
