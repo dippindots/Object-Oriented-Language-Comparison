@@ -1399,7 +1399,7 @@
    30. Methods that throw or specify "checked" exceptions, i.e., exceptions that must be dealt with (or at least recognized and not dealt with) by the programmer
    31. Object variables and parameters are always references (or "handles")
 
-    ### Python
+   ### Python
    1. Intuitive looping through lists
    You can loop through every list-like datastructure like this:
    ```python
@@ -1422,87 +1422,86 @@
           }
       }
    ```
-     Python: was much faster in both computation and programming time!
-     ```python
-        big = 2**100000
-        sumOfDigits = 0
-        for digit in str(big):
-            sumOfDigits += int(digit)
+   Python: was much faster in both computation and programming time!
+   ```python
+      big = 2**100000
+      sumOfDigits = 0
+      for digit in str(big):
+          sumOfDigits += int(digit)
 
-        print(sumOfDigits)
-     ```
-     Python has no need for a special class as it has arbitrary length integers
-     3. Swich values of variables
-     You want to make sure, that variable a is smaller than b
-     Java:
-     ```Java
-        tmp = a
-        a = min(a, b)
-        b = max(tmp, b)
-     ```
-     Python:
-     ```python
-     a, b = min(a, b), max(a,b)
-     ```
-     4. Return more than one variable
-     python:
-     ```python
-        def function (x, y):
-            return (x*x, y*y, x+y)
+      print(sumOfDigits)
+   ```
+   Python has no need for a special class as it has arbitrary length integers
+   3. Swich values of variables
+   You want to make sure, that variable a is smaller than b
+   Java:
+   ```Java
+      tmp = a
+      a = min(a, b)
+      b = max(tmp, b)
+   ```
+   Python:
+   ```python
+   a, b = min(a, b), max(a,b)
+   ```
+   4. Return more than one variable
+   python:
+   ```python
+      def function (x, y):
+          return (x*x, y*y, x+y)
 
-        a, b, c = function(4, 5)
-        print("Part 1: %.2f" % a)
-        print("Part 3: %.2f" % b)
-     ```
-     This is called "Argument Unpacking". In fact it does return only one variable (a tuple), but it creating the tuple is so easy that it does not feel like creating another variable.
-     5. Short initialisation
-     Java: Get a string representation of a list from the standard library
-     ```Java
-        import java.util.LinkedList;
-        import java.util.List;
+      a, b, c = function(4, 5)
+      print("Part 1: %.2f" % a)
+      print("Part 3: %.2f" % b)
+   ```
+   This is called "Argument Unpacking". In fact it does return only one variable (a tuple), but it creating the tuple is so easy that it does not feel like creating another variable.
+   5. Short initialisation
+   Java: Get a string representation of a list from the standard library
+   ```Java
+      import java.util.LinkedList;
+      import java.util.List;
+      public class test {
+          public static void main(String[] args) {
+              List<Integer> myList = new LinkedList<Integer>();
+              myList.add(1);
+              myList.add(3);
+              myList.add(3);
+              myList.add(7);
+              System.out.println(myList);
+          }
+      }
+   ```
+   Python:
+   ```python
+      myList = [1, 3, 3, 7]
+      print(myList)
+   ```
+   6. Chaining Comparisons
+   Java:
+   ```Java
+   if (-5 <= x &amp;&amp; x <= 42)
+   ```
+   Python:
+   ```python
+   if -5 <= x <= 42:
+   ```
+   7. Enumeration
+   You have a list and you would like to print it, prefixed with the index in the list
+   Java:
+   ```Java
+      List myList = (List initialisation and assignment, multiple lines)
+      int i = 0;
+      for (int element : myList) {
+          System.out.printf("%i: %i", i, element);
+          i++;
+      }
+   ```
+   Python:
+   ```python
+      myList = [1, 3, 3, 7]
 
-        public class test {
-            public static void main(String[] args) {
-                List<Integer> myList = new LinkedList<Integer>();
-                myList.add(1);
-                myList.add(3);
-                myList.add(3);
-                myList.add(7);
-                System.out.println(myList);
-            }
-        }
-     ```
-     Python:
-     ```python
-        myList = [1, 3, 3, 7]
-        print(myList)
-     ```
-     6. Chaining Comparisons
-     Java:
-     ```Java
-     if (-5 <= x &amp;&amp; x <= 42)
-     ```
-     Python:
-     ```python
-     if -5 <= x <= 42:
-     ```
-     7. Enumeration
-     You have a list and you would like to print it, prefixed with the index in the list
-     Java:
-     ```Java
-        List myList = (List initialisation and assignment, multiple lines)
-        int i = 0;
-        for (int element : myList) {
-            System.out.printf("%i: %i", i, element);
-            i++;
-        }
-     ```
-     Python:
-     ```python
-        myList = [1, 3, 3, 7]
-
-        for nr, element in enumerate(myList):
-            print("%i: %i" % (nr, element))
-     ```
-     8. Named String formatting
-     
+      for nr, element in enumerate(myList):
+          print("%i: %i" % (nr, element))
+   ```
+   8. Named String formatting
+   
