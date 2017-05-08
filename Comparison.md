@@ -1582,3 +1582,66 @@
         doctest.testmod()
    ```
    11. Sphinx
+   Documentation can be generated from partially docstrings, partially rst files with Sphinx.
+   12. for ... else 
+   You have a very long list and you want to know, if a prime is in this list.
+   Java:
+   ```Java
+    List myList = (List initialisation and assignment of many values)
+    boolean isPrimePresent = false;
+    for (int element : myList) {
+        if (isPrime(element)) {
+            isPrimePresent = true;
+            break;
+        }
+    }
+
+    if (!isPrimePresent) {
+        System.out.println("The list did not containe a prime.");
+    }
+   ```
+   Python:
+   ```python
+    myList = [1, 3, 3, 7]
+
+    for element in myList:
+        if isPrime(element):
+            break
+    else:
+        print("The list did not containe a prime.")
+   ```
+   13. Step through lists
+   Print only every n-th element of an iterable.
+   Python:
+   ```python
+    for element in myList[::n]:
+        print elemenet
+   ```
+   14. Dynamically add properties to objects and classes
+   Python:
+   ```python
+    class Node(object):
+        value = 3
+
+    a = Node()
+    b = Node()
+
+    print a.value
+
+    """ colorize the node! """
+    #print a.color ==> AttributeError
+
+    # thats ok, although the object originally had no attribute "color"
+    a.color = "white" 
+    print a.color 
+
+    # You can even add a property to the class
+    Node.special = "here is it"
+    print b.special
+   ```
+   15. Imaginary numbers
+   Python directly supports usage of imaginary numbers:
+   Python:
+   ```python
+   (2j + 1)**2
+   ```
