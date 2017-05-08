@@ -1367,11 +1367,11 @@
     ### Java
     Java have these unique features
     
-      1. Use of 16-bit Unicode for characters, including characters used for writing programs
-      2. Run-time interpreter 
-      3. Support for dynamic and automatic compilation, loading and execution of classes found on the CLASSPATH
+1. Use of 16-bit Unicode for characters, including characters used for writing programs
+    2. Run-time interpreter 
+     3. Support for dynamic and automatic compilation, loading and execution of classes found on the CLASSPATH
       4. Support for automatic garbage collection 
-     5. Support for Web "applets"
+  5. Support for Web "applets"
      6. Support for platform-independent GUI programming
      7. Support for event-driven programming
      8. Support for multithreading and synchronization
