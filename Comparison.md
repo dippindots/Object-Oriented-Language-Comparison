@@ -1364,10 +1364,8 @@
 
 11. Singleton: How to implement a thread-safe singleton.
 12. Unique features: Describe any unique features of the language.
-
     ### Java
     Java have these unique features
-
      1. Use of 16-bit Unicode for characters, including characters used for writing programs
      2. Run-time interpreter 
      3. Support for dynamic and automatic compilation, loading and execution of classes found on the CLASSPATH
