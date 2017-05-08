@@ -1364,3 +1364,37 @@
 
 11. Singleton: How to implement a thread-safe singleton.
 12. Unique features: Describe any unique features of the language.
+
+    ### Java
+    Java have these unique features
+
+    * Use of 16-bit Unicode for characters, including characters used for writing programs
+    * Run-time interpreter (C++ is generally a compiled language.)
+    * Support for dynamic and automatic compilation, loading and execution of classes found on the CLASSPATH
+    * Support for automatic garbage collection (In C++ garbage collection is the programmer's responsibility.)
+    * Support for Web "applets"
+    * Support for platform-independent GUI programming
+    * Support for event-driven programming
+    * Support for multithreading and synchronization
+    * Support for networking
+    * Support for security via a security manager
+    * Support for native language interface programming (keyword: native)
+    * A single-inheritance hierarchy with "Object" as the root superclass (keywords: extends and super)
+    * Everything must be in a class, including all method definitions.
+    * Interfaces (keywords: interface and implements)
+    * Code organization by packages (keywords: package and import)
+    * A "package" or "friendly" access protection category (but no corresponding keyword)
+    * All object creation at run-time via new
+    * A byte data type
+    * Fixed-size primitive types across all platforms
+    * Wrapper classes for primitive types
+    * The right-shift operator >>>, which uses zero extension, i.e., regarless of the sign, zeroes are inserted at the higher   order bits when the shift takes place.
+    * Automatic virtual (in the C++ sense) instance methods
+    * Arrays and strings as "first-class" objects, and use of + for conversion to String as well as + and += for string concatenation
+    * Final methods that cannot be redefined and final classes that cannot be extended (inherited from)
+    * Automatic initialization of primitive class members to zero and of member object references to null.
+    * Field initializers and static initialization blocks
+    * Built-in support for comment documentation, so that a source file can contain its own documentation, which is stripped out and formatted into HTML by the javadoc utility
+    * Inner class objects that secretly keep a handle to the object of the outer class that was involved in the creation of the inner class, permitting the inner class object to access members of the outer class object without qualification
+    * Methods that throw or specify "checked" exceptions, i.e., exceptions that must be dealt with (or at least recognized and not dealt with) by the programmer
+    * Object variables and parameters are always references (or "handles")
