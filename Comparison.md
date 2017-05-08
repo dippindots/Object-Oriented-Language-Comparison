@@ -1504,4 +1504,81 @@
           print("%i: %i" % (nr, element))
    ```
    8. Named String formatting
-   
+   ```python
+   print("The %(foo)s is %(bar)i." % {'foo': 'answer', 'bar':42})
+   ```
+   9. any() and all()
+   You have a very long list and you want to know, if a prime is in this list.
+   Java:
+   ```Java
+    List myList = (List initialisation and assignment of many values)
+    boolean isPrimePresent = false;
+    for (int element : myList) {
+        if (isPrime(element)) {
+            isPrimePresent = true;
+            break;
+        }
+    }
+
+    if (!isPrimePresent) {
+        System.out.println("The list did not containe a prime.");
+    }
+   ```
+   Python:
+   ```python
+    myList = [4, 4, 9, 12]
+
+    if not any(isPrime(x) for x in myList):
+        print("The list did not contain a prime")
+   ```
+   10. Doctest
+   You can write Documentation and Unit-Tests at the same time! 
+   Python:
+   ```python
+    def factorial(n):
+        """Return the factorial of n, an exact integer >= 0.
+
+        >>> [factorial(n) for n in range(6)]
+        [1, 1, 2, 6, 24, 120]
+        >>> factorial(30)
+        265252859812191058636308480000000
+        >>> factorial(-1)
+        Traceback (most recent call last):
+            ...
+        ValueError: n must be >= 0
+
+        Factorials of floats are OK, but the float must be an exact integer:
+        >>> factorial(30.1)
+        Traceback (most recent call last):
+            ...
+        ValueError: n must be exact integer
+        >>> factorial(30.0)
+        265252859812191058636308480000000
+
+        It must also not be ridiculously large:
+        >>> factorial(1e100)
+        Traceback (most recent call last):
+            ...
+        OverflowError: n too large
+        """
+
+        import math
+        if not n >= 0:
+            raise ValueError("n must be >= 0")
+        if math.floor(n) != n:
+            raise ValueError("n must be exact integer")
+        if n+1 == n:  # catch a value like 1e300
+            raise OverflowError("n too large")
+        result = 1
+        factor = 2
+        while factor <= n:
+            result *= factor
+            factor += 1
+        return result
+
+
+    if __name__ == "__main__":
+        import doctest
+        doctest.testmod()
+   ```
+   11. Sphinx
