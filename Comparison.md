@@ -634,74 +634,73 @@
 
    If you plan to make your Java classes available to the world at large, it is recommended that you register an Internet domain name, and begin the name of each of your packages with your domain name reversed. This will guarantee a globally unique name for each of your packages. And this really does mean "globally", in the sense of "anywhere in the world".
 
-    **How are name spaces used?**
+   **How are name spaces used?**
 
-    You get access to all the classes in a package with an import statement like this:
-    ```java
-    import one.two.three.*;
-    ```
-    You can also import just one specific class, as in
-    ```java
-    import one.two.three.SomeClass;
-    ```
-    When you have access to a class via an import statement, you use its unqualified name like this:
-    ```java
-    SomeClass myObject = new SomeClass();
-    ```
-    You can even use a specific class without an import statement, inconvenient and longwinded though that might be, as in
-    ```java
-    one.two.three.SomeClass myObject = new one.two.three.SomeClass();
-    ```
-    ### python
-    **What is name space?**
+   You get access to all the classes in a package with an import statement like this:
+   ```java
+   import one.two.three.*;
+   ```
+   You can also import just one specific class, as in
+   ```java
+   import one.two.three.SomeClass;
+   ```
+   When you have access to a class via an import statement, you use its unqualified name like this:
+   ```java
+   SomeClass myObject = new SomeClass();
+   ```
+   You can even use a specific class without an import statement, inconvenient and longwinded though that might be, as in
+   ```java
+   one.two.three.SomeClass myObject = new one.two.three.SomeClass();
+   ```
+   ### python
+   **What is name space?**
 
-    Generally speaking, a namespace (sometimes also called a context) is a naming system for making names unique to avoid ambiguity. Everybody knows a namespacing system from daily life, i.e. the naming of people in firstname and familiy name (surname). Another example is a network: each network device (workstation, server, printer, ...) needs a unique name and address. Yet another example is the directory structure of file systems. The same file name can be used in different directories, the files can be uniquely accessed via the pathnames.
+   Generally speaking, a namespace (sometimes also called a context) is a naming system for making names unique to avoid ambiguity. Everybody knows a namespacing system from daily life, i.e. the naming of people in firstname and familiy name (surname). Another example is a network: each network device (workstation, server, printer, ...) needs a unique name and address. Yet another example is the directory structure of file systems. The same file name can be used in different directories, the files can be uniquely accessed via the pathnames.
 
-    Many programming languages use namespaces or contexts for identifiers. An identifier defined in a namespace is associated with that namespace. This way, the same identifier can be independently defined in multiple namespaces. (Like the same file names in different directories) Programming languages, which support namespaces, may have different rules that determine to which namespace an identifier belongs.
+   Many programming languages use namespaces or contexts for identifiers. An identifier defined in a namespace is associated with that namespace. This way, the same identifier can be independently defined in multiple namespaces. (Like the same file names in different directories) Programming languages, which support namespaces, may have different rules that determine to which namespace an identifier belongs.
 
-    Namespaces in Python are implemented as Python dictionaries, this means it is a mapping from names (keys) to objects (values). The user doesn't have to know this to write a Python program and when using namespaces.
+   Namespaces in Python are implemented as Python dictionaries, this means it is a mapping from names (keys) to objects (values). The user doesn't have to know this to write a Python program and when using namespaces.
 
-    Some namespaces in Python:
+   Some namespaces in Python:
 
-    1.global names of a module
+   1.global names of a module
 
-    2.local names in a function or method invocation
-    built-in names: this namespace contains built-in functions (e.g. abs(), cmp(), ...) and built-in exception names.
+   2.local names in a function or method invocation
+   built-in names: this namespace contains built-in functions (e.g. abs(), cmp(), ...) and built-in exception names.
 
-    **How are name spaces implemented?**
+   **How are name spaces implemented?**
+   We can picture a namespace as a Python dictionary structure, where the dictionary keys represent the names and the dictionary values the object itself (and this is also how namespaces are currently implemented in Python), e.g.,
+   ```python
+   a_namespace = {'name_a':object_1, 'name_b':object_2, ...}
+   ```
+   Now, the tricky part is that we have multiple independent namespaces in Python, and names can be reused for different namespaces (only the objects are unique, for example:
+   ```python
+   a_namespace = {'name_a':object_1, 'name_b':object_2, ...}
+   b_namespace = {'name_a':object_3, 'name_b':object_4, ...}
+   ```
+   For example, everytime we call a for-loop or define a function, it will create its own namespace. Namespaces also have different levels of hierarchy (the so-called “scope”), which we will discuss in more detail in the next section.
 
-    We can picture a namespace as a Python dictionary structure, where the dictionary keys represent the names and the dictionary values the object itself (and this is also how namespaces are currently implemented in Python), e.g.,
-    ```python
-    a_namespace = {'name_a':object_1, 'name_b':object_2, ...}
-    ```
-    Now, the tricky part is that we have multiple independent namespaces in Python, and names can be reused for different namespaces (only the objects are unique, for example:
-    ```python
-    a_namespace = {'name_a':object_1, 'name_b':object_2, ...}
-    b_namespace = {'name_a':object_3, 'name_b':object_4, ...}
-    ```
-    For example, everytime we call a for-loop or define a function, it will create its own namespace. Namespaces also have different levels of hierarchy (the so-called “scope”), which we will discuss in more detail in the next section.
+   **How are name spaces used?**
 
-    **How are name spaces used?**
+   The "from ... import ..." can be used to insert the relevant names directly into the calling module's namespace, and those names can be accessed from the calling module without the qualified name :
+   ```python
+   # assume modulea defines two functions : func1() and func2() and one class : class1
+   from modulea import func1
 
-    The "from ... import ..." can be used to insert the relevant names directly into the calling module's namespace, and those names can be accessed from the calling module without the qualified name :
-    ```python
-    # assume modulea defines two functions : func1() and func2() and one class : class1
-    from modulea import func1
+   func1()
+   func2() # this will fail as an undefined name, as will the full name modulea.func2()
+   a = class1() # this will fail as an undefined name, as will the full name modulea.class1()
+   ```
+   Since this directly imports names (without qualification) it can overwrite existing names with no warnings.
 
-    func1()
-    func2() # this will fail as an undefined name, as will the full name modulea.func2()
-    a = class1() # this will fail as an undefined name, as will the full name modulea.class1()
-    ```
-    Since this directly imports names (without qualification) it can overwrite existing names with no warnings.
+   A special form is "from ... import *", which imports all names defined in the named package directly in the calling modules namespace. Use of this form of import, although supported within the language, is generally discouraged as it pollutes the namespace of the calling module and will cause already defined names to be overwritten in the case of name clashes.
 
-    A special form is "from ... import *", which imports all names defined in the named package directly in the calling modules namespace. Use of this form of import, although supported within the language, is generally discouraged as it pollutes the namespace of the calling module and will cause already defined names to be overwritten in the case of name clashes.
+   Python also supports "import x as y" as a way of providing an alias or alternative name for use by the calling module:
 
-    Python also supports "import x as y" as a way of providing an alias or alternative name for use by the calling module:
-
-    ```python
-    import numpy as np
-    a = np.arange(1000)
-    ```
+   ```python
+   import numpy as np
+   a = np.arange(1000)
+   ```
 
 5. **Errors and exception handling: How are errors and/or exceptions handled/structured/implemented?**
 
