@@ -1363,14 +1363,194 @@
 
 
 11. Singleton: How to implement a thread-safe singleton.
+    In software engineering, the singleton pattern is a software design pattern that restricts the instantiation of a class to one object. This is useful when exactly one object is needed to coordinate actions across the system. The concept is sometimes generalized to systems that operate more efficiently when only one object exists, or that restrict the instantiation to a certain number of objects. The term comes from the mathematical concept of a singleton.
+    ### Java
+    1) Simple implement in Java(not threasd safe)
+    ```Java
+    /// <summary>
+    /// A simple singleton class implements.
+    /// </summary>
+    public sealed class Singleton
+    {
+        private static Singleton _instance = null;
+
+        /// <summary>
+        /// Prevents a default instance of the
+        /// <see cref="Singleton"/> class from being created.
+        /// </summary>
+        private Singleton()
+        {
+        }
+
+        /// <summary>
+        /// Gets the instance.
+        /// </summary>
+        public static Singleton Instance
+        {
+            get { return _instance ?? (_instance = new Singleton()); }
+        }
+    }
+    ```
+    Can be used in the single thread environment.
+
+    2) thread-safe version
+    ```Java
+    /// <summary>
+    /// A thread-safe singleton class.
+    /// </summary>
+    public sealed class Singleton
+    {
+        private static Singleton _instance = null;
+        private static readonly object SynObject = new object();
+
+        Singleton()
+        {
+        }
+
+        /// <summary>
+        /// Gets the instance.
+        /// </summary>
+        public static Singleton Instance
+        {
+            get
+            {
+                // Syn operation.
+                lock (SynObject)
+                {
+                    return _instance ?? (_instance = new Singleton());
+                }
+            }
+        }
+    }
+    ```
+
+    3) thread-safe double lock
+    ```Java
+    /// <summary>
+    /// Double-Checked Locking implements a thread-safe singleton class
+    /// </summary>
+    public sealed class Singleton
+    {
+        private static Singleton _instance = null;
+        // Creates an syn object.
+        private static readonly object SynObject = new object();
+
+        Singleton()
+        {
+        }
+
+        public static Singleton Instance
+        {
+            get
+            {
+                // Double-Checked Locking
+                if (null == _instance)
+                {
+                    lock (SynObject)
+                    {
+                        if (null == _instance)
+                        {
+                            _instance = new Singleton();
+                        }
+                    }
+                }
+                return _instance;
+            }
+        }
+    }
+    ```
+
+    4) Lazy initialized
+    ```Java
+    /// <summary>
+    /// .NET 4's Lazy<T> type
+    /// </summary>
+    public sealed class Singleton
+    {
+        private static readonly Lazy<Singleton> lazy =
+            new Lazy<Singleton>(() => new Singleton());
+
+        public static Singleton Instance { get { return lazy.Value; } }
+
+        private Singleton()
+        {
+        }
+    }
+    ```
+
+    ### Pyhton
+    1) Simple implement in Python(not threasd safe)  
+    ```python
+    class Singleton(object):
+
+        # 定义静态变量实例
+        __instance = None
+
+        def __init__(self):
+            pass
+
+        def __new__(cls, *args, **kwargs):
+            if not cls.__instance:
+                cls.__instance = super(Singleton, cls).__new__(cls, *args, **kwargs)
+            return cls.__instance
+
+    if __name__ == "__main__":
+        instance1 = Singleton()
+        instance2 = Singleton()
+
+        print id(instance1)
+        print id(instance2)
+    ```
+
+    2) Tread safe with double lock and lazy initialized
+    ```python
+    from MyThread import *
+    import threading
+
+    Lock = threading.Lock()
+
+
+    class Singleton(object):
+
+        # 定义静态变量实例
+        __instance = None
+
+        def __init__(self):
+            pass
+
+        def __new__(cls, *args, **kwargs):
+            if not cls.__instance:
+                try:
+                    Lock.acquire()
+                    # double check
+                    if not cls.__instance:
+                        cls.__instance = super(Singleton, cls).__new__(cls, *args, **kwargs)
+                finally:
+                    Lock.release()
+            return cls.__instance
+
+
+    def test_singleton_in_thread():
+        print id(Singleton())
+
+    if __name__ == "__main__":
+        idx = 0
+        while 1:
+            MyThread(test_singleton_in_thread, []).start()
+            idx += 1
+            if idx > 0X100:
+                break
+    ```
+    Based on these comparison between Java and Python, all of them can complete a thread-safe Singleton with lazy initialized.        
+
 12. Unique features: Describe any unique features of the language.
     ### Java
     Java have these unique features
-    
+
    1. Use of 16-bit Unicode for characters, including characters used for writing programs
-   2. Run-time interpreter 
+   2. Run-time interpreter
    3. Support for dynamic and automatic compilation, loading and execution of classes found on the CLASSPATH
-   4. Support for automatic garbage collection 
+   4. Support for automatic garbage collection
    5. Support for Web "applets"
    6. Support for platform-independent GUI programming
    7. Support for event-driven programming
@@ -1532,7 +1712,7 @@
         print("The list did not contain a prime")
    ```
    10. Doctest
-   You can write Documentation and Unit-Tests at the same time! 
+   You can write Documentation and Unit-Tests at the same time!
    Python:
    ```python
     def factorial(n):
@@ -1583,7 +1763,7 @@
    ```
    11. Sphinx
    Documentation can be generated from partially docstrings, partially rst files with Sphinx.
-   12. for ... else 
+   12. for ... else
    You have a very long list and you want to know, if a prime is in this list.
    Java:
    ```Java
@@ -1632,8 +1812,8 @@
     #print a.color ==> AttributeError
 
     # thats ok, although the object originally had no attribute "color"
-    a.color = "white" 
-    print a.color 
+    a.color = "white"
+    print a.color
 
     # You can even add a property to the class
     Node.special = "here is it"
