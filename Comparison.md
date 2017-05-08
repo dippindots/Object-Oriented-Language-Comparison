@@ -1310,9 +1310,227 @@
    ```
 
 
-7. Interfaces/protocols/?: How do interfaces/protocols/etc work?
-8. Functional features: What functional features are supported and how do they work? (lambdas, closures, etc)
-9. Reflection: What reflection abilities are supported?
+7. **Interfaces/protocols/?: How do interfaces/protocols/etc work?**
+
+In object-oriented programming, a protocol or interface is a common means for unrelated objects to communicate with each other.
+
+Multiple inheritance is a feature of some object-oriented computer programming languages in which an object or class can inherit characteristics and features from more than one parent object or parent class. It is distinct from single inheritance, where an object or class may only inherit from one particular object or class.
+
+Some languages like Java, multiple inheritance is prohibited. So interface is necessary. 
+### Java
+In the Java programming language, an interface is a reference type, similar to a class, that can contain only constants, method signatures, default methods, static methods, and nested types. Method bodies exist only for default methods and static methods. Interfaces cannot be instantiated—they can only be implemented by classes or extended by other interfaces.
+
+Define an interface:
+```Java
+public interface OperateCar {
+
+   // constant declarations, if any
+
+   // method signatures
+   
+   // An enum with values RIGHT, LEFT
+   int turn(Direction direction,
+            double radius,
+            double startSpeed,
+            double endSpeed);
+   int changeLanes(Direction direction,
+                   double startSpeed,
+                   double endSpeed);
+   int signalTurn(Direction direction,
+                  boolean signalOn);
+   int getRadarFront(double distanceToCar,
+                     double speedOfCar);
+   int getRadarRear(double distanceToCar,
+                    double speedOfCar);
+         ......
+   // more method signatures
+}
+```
+To use an interface, you write a class that implements the interface. When an instantiable class implements an interface, it provides a method body for each of the methods declared in the interface.
+
+```java
+public class OperateBMW760i implements OperateCar {
+
+    // the OperateCar method signatures, with implementation --
+    // for example:
+    int signalTurn(Direction direction, boolean signalOn) {
+       // code to turn BMW's LEFT turn indicator lights on
+       // code to turn BMW's LEFT turn indicator lights off
+       // code to turn BMW's RIGHT turn indicator lights on
+       // code to turn BMW's RIGHT turn indicator lights off
+    }
+
+    // other members, as needed -- for example, helper classes not 
+    // visible to clients of the interface
+}
+```
+### Python
+Interfaces is not necessary in Python. This is because Python has proper multiple inheritance, and also duck-typing, which means that the places where you must have interfaces in Java, you don't have to have them in Python. That said, there is still several uses of interfaces. Some of them are covered by Pythons Abstract Base Classes, introduced in Python 2.6. That's useful if you want to make base classes that cannot be instantiated, but provide a specific interface or part of an implementation.
+
+Abstract base classes complement duck-typing by providing a way to define interfaces when other techniques like hasattr() would be clumsy or subtly wrong (for example with magic methods). ABCs introduce virtual subclasses, which are classes that don’t inherit from a class but are still recognized by isinstance() and issubclass(). Python comes with many built-in ABCs for data structures, numbers, and streams.
+
+An example of define a ABC:
+```python
+from abc import ABCMeta, abstractmethod
+
+class IStream(metaclass=ABCMeta):
+    @abstractmethod
+    def read(self, maxbytes=-1):
+        pass
+
+    @abstractmethod
+    def write(self, data):
+        pass
+```
+Implementation:
+```python
+class SocketStream(IStream):
+    def read(self, maxbytes=-1):
+        pass
+
+    def write(self, data):
+        pass
+```
+Or:
+```python
+import io
+
+# Register the built-in I/O classes as supporting our interface
+IStream.register(io.IOBase)
+
+# Open a normal file and type check
+f = open('foo.txt')
+isinstance(f, IStream)
+```
+Another way to use interface in Python is use some other package. Zope.interface is a common choice. The Zope Toolkit (ZTK) is a set of libraries intended for reuse by projects to develop web applications or web frameworks. It is developed by the contributors of the Zope Foundation. The whole collection of ZTK libraries are used in various web frameworks and web application servers, two examples of these are Grok and Zope. Zope.interface is Interfaces for Python. This package provides an implementation of “object interfaces” for Python. Interfaces are a mechanism for labeling objects as conforming to a given API or contract. So, this package can be considered as implementation of the Design By Contract methodology support in Python.
+
+Interfaces are defined using Python class statements:
+```python
+ import zope.interface
+ class IFoo(zope.interface.Interface):
+    """Foo blah blah"""
+
+    x = zope.interface.Attribute("""X blah blah""")
+
+    def bar(q, r=None):
+        """bar blah blah"""
+```
+Interfaces can extend other interfaces. They do this simply by listing the other interfaces as base interfaces:
+
+```python
+ class IBlat(zope.interface.Interface):
+     """Blat blah blah"""
+
+     y = zope.interface.Attribute("y blah blah")
+     def eek():
+         """eek blah blah"""
+
+ IBlat.__bases__
+(<InterfaceClass zope.interface.Interface>,)
+
+ class IBaz(IFoo, IBlat):
+     """Baz blah"""
+     def eek(a=1):
+         """eek in baz blah"""
+
+
+ IBaz.__bases__
+(<InterfaceClass __builtin__.IFoo>, <InterfaceClass __builtin__.IBlat>)
+
+ names = list(IBaz)
+ names.sort()
+ names
+['bar', 'eek', 'x', 'y']
+```
+
+8. **Functional features: What functional features are supported and how do they work? (lambdas, closures, etc)**
+
+functional programming is a programming paradigm—a style of building the structure and elements of computer programs—that treats computation as the evaluation of mathematical functions and avoids changing-state and mutable data. It is a declarative programming paradigm, which means programming is done with expressions or declarations instead of statements. In functional code, the output value of a function depends only on the arguments that are passed to the function, so calling a function f twice with the same value for an argument x will produce the same result f(x) each time; this is in contrast to procedures depending on local or global state, which may produce different results at different times when called with the same arguments but different program state.
+
+Functional programming languages have largely been emphasized in academia rather than in commercial software development. However, prominent programming languages which support functional programming. have been used in industrial and commercial applications by a wide variety of organizations. Programming in a functional style can also be accomplished in languages that are not specifically designed for functional programming. Both Java and Python are non-functional languages.
+
+### Java
+In Java, anonymous classes can sometimes be used to simulate closures; however, anonymous classes are not always proper replacements to closures because they have more limited capabilities. Java 8 supports lambda expressions as a replacement for some anonymous classes. However, the presence of checked exceptions in Java can make functional programming inconvenient, because it can be necessary to catch checked exceptions and then rethrow them.
+
+One issue with anonymous classes is that if the implementation of your anonymous class is very simple, such as an interface that contains only one method, then the syntax of anonymous classes may seem unwieldy and unclear. In these cases, you're usually trying to pass functionality as an argument to another method, such as what action should be taken when someone clicks a button. Lambda expressions enable you to do this, to treat functionality as method argument, or code as data.
+
+One of the arguments of the following invocation of the method printPersons is an anonymous class that filters members that are eligible for Selective Service in the United States: those who are male and between the ages of 18 and 25:
+```java
+printPersons(
+    roster,
+    new CheckPerson() {
+        public boolean test(Person p) {
+            return p.getGender() == Person.Sex.MALE
+                && p.getAge() >= 18
+                && p.getAge() <= 25;
+        }
+    }
+);
+```
+The CheckPerson interface is a functional interface. A functional interface is any interface that contains only one abstract method. (A functional interface may contain one or more default methods or static methods.) Because a functional interface contains only one abstract method, you can omit the name of that method when you implement it. To do this, instead of using an anonymous class expression, you use a lambda expression, which is highlighted in the following method invocation:
+```java
+printPersons(
+    roster,
+    (Person p) -> p.getGender() == Person.Sex.MALE
+        && p.getAge() >= 18
+        && p.getAge() <= 25
+);
+```
+### Python
+Many scripting languages, including Perl, Python, PHP, Lua, Tcl/Tk, JavaScript and Io, have first-class functions. A programming language is said to have first-class functions if it treats functions as first-class citizens. Specifically, this means the language supports passing functions as arguments to other functions, returning them as the values from other functions, and assigning them to variables or storing them in data structures. Some programming language theorists require support for anonymous functions (function literals) as well. In languages with first-class functions, the names of functions do not have any special status; they are treated like ordinary variables with a function type.
+
+an example:
+```python
+var fn = function(a){
+   return function(b){
+        return a.apply(b);
+    }
+};
+
+var apply = fn(function(){
+     console.log(this);
+});
+
+apply('zebra');
+```
+9. **Reflection: What reflection abilities are supported?**
+
+Reflection is the ability of a computer program to examine, introspect, and modify its own structure and behavior at runtime. Reflection can be used for observing and modifying program execution at runtime. A reflection-oriented program component can monitor the execution of an enclosure of code and can modify itself according to a desired goal related to that enclosure. This is typically accomplished by dynamically assigning program code at runtime.
+
+### Java
+Reflection is commonly used by programs which require the ability to examine or modify the runtime behavior of applications running in the Java virtual machine. This is a relatively advanced feature and should be used only by developers who have a strong grasp of the fundamentals of the language. With that caveat in mind, reflection is a powerful technique and can enable applications to perform operations which would otherwise be impossible.
+
+An example:
+```java
+// Without reflection
+Foo foo = new Foo();
+
+foo.hello();
+
+// With reflection
+Object foo = Class.forName("complete.classpath.and.Foo").newInstance();
+// Alternatively: Object foo = Foo.class.newInstance();
+Method m = foo.getClass().getDeclaredMethod("hello", new Class<?>[0]);
+m.invoke(foo);
+```
+### Python
+A Python script can find out about the type, class, attributes and methods of an object. This is referred to as reflection or introspection. Reflection-enabling functions include type(), isinstance(), callable(), dir() and getattr().
+
+An example:
+```python
+# without reflection
+obj = Foo()
+obj.hello()
+
+# with reflection
+class_name = "Foo"
+method = "hello"
+obj = globals()[class_name]()
+getattr(obj, method)()
+
+# with eval
+eval("Foo().hello()")
+```
 10. **Procedural programming support: Can functions be created outside of classes or must all functions be methods of a class?**
     * ### Java
 
